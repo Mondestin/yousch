@@ -1,21 +1,19 @@
 @extends('layouts.app')
 @section('styles')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link  href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+@include('layouts.datatablestyles')
 @endsection
 @section('content')
     <div class="container-fluid">
-        <h1 class="text-black-50">Users</h1>
-        <div class="container mt-5">
-        
+        <h1 class="text-black ml-3">Utilisateurs</h1>
+        <div class="container-fluid mt-5">
+        <div class="card card-outline card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des utilisateurs</h3>
+              </div>      
         <div class="card-body">
-<table class="table table-bordered" id="datatable">
+<table class="table table-bordered table-striped" id="datatable">
 <thead>
 <tr>
-<th>Id</th>
 <th>Name</th>
 <th>Email</th>
 <th>Created at</th>
@@ -26,10 +24,10 @@
 </div>
         </div>
     </div>
+    </div>
 @endsection
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+@include('layouts.datatablescripts')
 <script type="text/javascript">
 $(document).ready( function () {
 $.ajaxSetup({
@@ -42,7 +40,6 @@ processing: true,
 serverSide: true,
 ajax: "{{ url('users') }}",
 columns: [
-{ data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'email', name: 'email' },
 { data: 'created_at', name: 'created_at' },

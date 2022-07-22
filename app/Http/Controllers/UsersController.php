@@ -17,7 +17,18 @@ class UsersController extends Controller
     {
         if(request()->ajax()) {
             return datatables()->of(User::select('*'))
-            ->addColumn('action', '<a class="btn btn-success" href="">Profile</a>')
+            ->addColumn('action', '<a class="btn btn-success btn-sm" href="#">
+                                        <i class="fas fa-eye">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-warning btn-sm" href="#">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="#">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                    </a>')
             ->rawColumns(['action'])
             ->addIndexColumn()
      
