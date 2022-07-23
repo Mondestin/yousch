@@ -8,9 +8,10 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link href="{{ asset('dist/css/adminlte.css') }}" rel="stylesheet">
+    <link href="{{ asset('dist/css/styles.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
 <div class="wrapper">
     <!-- Main Header -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -60,9 +61,14 @@
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+          <section class="content-header">
+             @yield('content-header')
+           </section>
+          <!-- Main content -->
+           <section class="content">
+             @yield('content')
+           </section>
     </div>
-
     <!-- Main Footer -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">

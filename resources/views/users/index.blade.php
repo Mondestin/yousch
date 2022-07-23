@@ -2,13 +2,22 @@
 @section('styles')
 @include('layouts.datatablestyles')
 @endsection
+@section('content-header')
+     <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-md-6">
+          <h1 class="text-black">Utilisateurs</h1>
+          </div>
+        </div>
+      </div>
+ 
+@endsection
 @section('content')
     <div class="container-fluid">
-        <h1 class="text-black ml-3">Utilisateurs</h1>
-        <div class="container-fluid mt-5">
-        <div class="card card-outline card-primary">
+        <div class="container-fluid mt-3">
+        <div class="card card-outline card-purple">
               <div class="card-header">
-                <h3 class="card-title">Liste des utilisateurs</h3>
+                <h3 class="card-title"><b> Liste des utilisateurs</b></h3>
               </div>      
         <div class="card-body">
 <table class="table table-bordered table-striped" id="datatable">

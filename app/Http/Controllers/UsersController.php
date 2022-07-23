@@ -32,11 +32,11 @@ class UsersController extends Controller
                     <a href="users/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
                           <i class="fa fa-eye" ></i>
                         </a>
-                <a href="users/'.$data->id.'/edit/" class="btn btn-warning btn-sm" title="Modifier">
-                                <i class="fa fa-pencil" style="color: #fff;"></i>
-                            </a>
-                <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
-                                <i class="fa fa-trash" style="color: #fff;"></i>
+                            <a href="users/'.$data->id.'/edit/" class="btn btn-warning btn-sm" title="Modifier">
+                                            <i class="fa fa-pencil" style="color: #fff;"></i>
+                                        </a>
+                            <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
+                                            <i class="fa fa-trash" style="color: #fff;"></i>
                             </a>
                             ';
             })
@@ -77,7 +77,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return "profile";
+        //find the specific user by id
+        $user=User::findOrFail($id);
+        return view('users.profile', compact('user'));
     }
 
     /**

@@ -1,0 +1,19 @@
+/* Custom styles */
+.purple{
+    background-color: #6633CC!important;
+}
+.purple-light{
+    background-color: #9B51E0!important;
+}
+.blue{
+    background-color: #000033!important;
+}
+.orange{
+    background-color: #FF5500!important;
+}
+.card-purple.card-outlines {
+    border-top: 3px solid #FF5500!important;
+}
+.borderded{
+    border-radius: 8px!important;
+}
