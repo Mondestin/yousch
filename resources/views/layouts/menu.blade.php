@@ -6,6 +6,13 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('students.index') }}" class="nav-link {{ Request::is('students*') ? 'active' : '' }}">
+         <i class="nav-icon fas fa-users"></i>
+        <p>Etudiants</p>
+    </a>
+</li>
+
+<li class="nav-item">
     <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-users-cog"></i>
         <p>Utilisateurs</p>

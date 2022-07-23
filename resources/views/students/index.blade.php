@@ -6,7 +6,7 @@
      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-md-6">
-          <h1 class="text-black">Utilisateurs</h1>
+          <h1 class="text-black">Etudiants</h1>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
         <div class="container-fluid mt-3">
         <div class="card card-outline card-purple">
               <div class="card-header">
-                <h3 class="card-title"><b> Liste des utilisateurs</b></h3>
+                <h3 class="card-title"><b> Liste des étudiants</b></h3>
               </div>
               <div class="container-fluid m-3">
               <a class="btn btn-success float-right mr-4" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> New</a>

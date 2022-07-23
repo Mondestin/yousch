@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-
 use Datatables;
+use App\Models\Role;
+use Illuminate\Support\Arr;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 class UsersController extends Controller
 {
      /**
@@ -31,20 +34,16 @@ class UsersController extends Controller
                 return '
                     <a href="users/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
                           <i class="fa fa-eye" ></i>
-                        </a>
-                            <a href="users/'.$data->id.'/edit/" class="btn btn-warning btn-sm" title="Modifier">
-                                            <i class="fa fa-pencil" style="color: #fff;"></i>
-                                        </a>
-                            <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
-                                            <i class="fa fa-trash" style="color: #fff;"></i>
-                            </a>
-                            ';
+                    </a>
+                    <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
+                          <i class="fa fa-trash" style="color: #fff;"></i>
+                    </a>
+                    ';
             })
             ->rawColumns(['action'])
             ->addIndexColumn()
-     
             ->make(true);
-    }
+        }
         return view('users.index');
     }
 
@@ -55,7 +54,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles=Role::all();
+        return view('auth.register', compact('roles'));
     }
 
     /**
@@ -66,7 +66,40 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+
+                    // generate a random password for the user
+                    // $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+                    // $pass = array(); 
+                    // $combLen = strlen($comb) - 1; 
+                    // for ($i = 0; $i < 8; $i++) {
+                    //     $n = rand(0, $combLen);
+                    //     $pass[] = $comb[$n];
+                    // }
+                    //  $passw=implode($pass);
+       
+                     $email = $request['email'];
+                     $name = $request['name'];
+                     $password= Hash::make($request['password']);
+                     
+                    //  $user = array('name'=>$name,
+                    //          'email'=>$email,
+                    //          'pass'=>$passw);
+                    //   \Mail::to($email)->send(new \App\Mail\SendMail($user));
+                      
+               
+                    $user = User::create([
+                   'name' => $email,
+                   'email' => $name,
+                   'password' => $password,
+               ]);
+               $user->roles()->attach($request['role']);
+             if ($user) {
+                dd("bon");
+             }
+             else {
+                dd("pas bon");
+             }
     }
 
     /**
@@ -88,9 +121,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         return "edit";
+
     }
 
     /**
@@ -102,7 +136,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "update";
     }
 
     /**

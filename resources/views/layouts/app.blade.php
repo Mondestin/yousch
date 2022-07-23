@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{asset('img/logo.png')}}" type="image/ico" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <!-- overlayScrollbars -->
@@ -21,31 +22,30 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
-
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
-                         class="user-image img-circle" alt="User Image">
+                    <img src="{{asset('img/user.png')}}"
+                         class="user-image img-circle" alt="User Image" style="border: 1px solid #6633CC!important;">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" >
                     <!-- User image -->
-                    <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
-                             class="img-circle elevation-2"
-                             alt="User Image">
-                        <p>
+                    <li class="user-header">
+                        <img src="{{asset('img/user.png')}}"
+                             class="img-circle"
+                             alt="User Image" style="border: 2px solid #6633CC!important;">
+                        <p  class="text-dark">
                             {{ Auth::user()->name }}
                             <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        <a href="#" class="btn btn-default btn-flat">Profile <i class="fa-solid fa-user-cog"></i></a>
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Se déconnecter
+                            Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

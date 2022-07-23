@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,8 @@ Auth::routes();
 Route::resource('users', UsersController::class);
 Route::get('delete/users/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('del_user');
 
+//STUDENTS ROUTES
+Route::resource('students', StudentController::class);
 
 //SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

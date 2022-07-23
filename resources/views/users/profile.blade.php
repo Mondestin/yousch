@@ -52,10 +52,10 @@
                 </p>
 
                 <hr>
-
                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">Lorem ipsum dolor sit amementum enim neque.</p>
+                <hr>
+                <a class="btn btn-primary" href="{{ route('users.index') }}"><i class="fa fa-arrow-left-long"></i> Retour à la liste</a>
               </div>
               <!-- /.card-body -->
             </div>
