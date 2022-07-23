@@ -20,5 +20,11 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+//USER ROUTES
 Route::resource('users', UsersController::class);
+Route::get('delete/users/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('del_user');
+
+
+//SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

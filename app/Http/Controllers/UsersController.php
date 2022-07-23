@@ -8,6 +8,16 @@ use App\Models\User;
 use Datatables;
 class UsersController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,18 +27,19 @@ class UsersController extends Controller
     {
         if(request()->ajax()) {
             return datatables()->of(User::select('*'))
-            ->addColumn('action', '<a class="btn btn-success btn-sm" href="#">
-                                        <i class="fas fa-eye">
-                                        </i>
-                                    </a>
-                                    <a class="btn btn-warning btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                    </a>')
+            ->addColumn('action', function($data){
+                return '
+                    <a href="users/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
+                          <i class="fa fa-eye" ></i>
+                        </a>
+                <a href="users/'.$data->id.'/edit/" class="btn btn-warning btn-sm" title="Modifier">
+                                <i class="fa fa-pencil" style="color: #fff;"></i>
+                            </a>
+                <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
+                                <i class="fa fa-trash" style="color: #fff;"></i>
+                            </a>
+                            ';
+            })
             ->rawColumns(['action'])
             ->addIndexColumn()
      
@@ -66,7 +77,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return "profile";
     }
 
     /**
@@ -77,7 +88,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit";
     }
 
     /**
@@ -100,6 +111,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "delete";
     }
 }
