@@ -5,9 +5,16 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link href="{{ asset('dist/css/adminlte.css') }}" rel="stylesheet">
+
+    <!-- Datable bootstrap -->
+    <link href="{{ asset('dist/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dist/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('dist/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -82,7 +89,16 @@
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
- @yield('scripts')
 
+<!-- Datatable bootstrap  -->
+<script src="{{asset('dist/js/bootstrap/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('dist/js/bootstrap/js/dataTables.bootstrap4.min.js')}}"></script>
+{{-- <script src="{{asset('dist/js/bootstrap/js/jquery-3.5.1.js')}}"></script> --}}
+@yield('scripts')
+<script>
+    $(document).ready(function() {
+  $('#dataTable').DataTable();
+});
+</script>
 </body>
 </html>

@@ -6,8 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 use Datatables;
+
 class UsersController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +26,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             return datatables()->of(User::select('*'))
-            ->addColumn('action', '<a class="btn btn-success btn-sm" href="#">
+                ->addColumn('action', '<a class="btn btn-success btn-sm" href="#">
                                         <i class="fas fa-eye">
                                         </i>
                                     </a>
@@ -29,11 +40,11 @@ class UsersController extends Controller
                                         <i class="fas fa-trash">
                                         </i>
                                     </a>')
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-     
-            ->make(true);
-    }
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+
+                ->make(true);
+        }
         return view('users.index');
     }
 
