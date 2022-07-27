@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Edit member staff</h3>
+        <h3 class="border-bottom pb-2 mb-4">Modifier le staff</h3>
         
         @if (session()->has("success"))
             <div class="alert alert-success">
@@ -97,8 +97,8 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4">Create</button>
-                            <a href="{{ route('home') }}" class="btn btn-danger mt-4">Cancel</a>
+                            <button type="submit" class="btn btn-primary mt-4">Enregistrer</button>
+                            <a href="{{ route('home') }}" class="btn btn-danger mt-4">Retour</a>
                         </form>
                         <hr>
                     </div>    

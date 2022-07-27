@@ -13,7 +13,7 @@
 
         <div class="d-flex justify-content-between mb-4">
             {{-- {{ $staffs->links() }} pagination --}}
-            <div><a href="{{ route('campus.create') }}" class="btn btn-success">Ajouter un campus</a></div>
+            <div><a href="{{ route('campus.create') }}" class="btn btn-success">Nouveau</a></div>
         </div>
 
         {{-- <table class="table table-bordered table-hover">

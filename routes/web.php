@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\CampusController;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\SubjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +31,8 @@ Auth::routes();
 Route::resource('users', UsersController::class);
 Route::resource('staffs', StaffController::class);
 Route::resource('campus', CampusController::class);
+Route::resource('classes', ClassesController::class);
+Route::resource('courses', CoursesController::class);
+Route::resource('subjects', SubjectsController::class);
 
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

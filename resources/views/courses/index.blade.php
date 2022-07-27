@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Staff</h3>
+        <h3 class="border-bottom pb-2 mb-4">Cours</h3>
         
         @if (session()->has("success"))
             <div class="alert alert-success">
@@ -13,7 +13,7 @@
 
         <div class="d-flex justify-content-between mb-4">
             {{-- {{ $staffs->links() }} pagination --}}
-            <div><a href="{{ route('staffs.create') }}" class="btn btn-success">Nouveau</a></div>
+            <div><a href="{{ route('courses.create') }}" class="btn btn-success">Nouveau</a></div>
         </div>
 
         <table class="table table-bordered table-hover">
@@ -21,28 +21,20 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Téléphone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Campus</th>
                     <th scope="col">Code</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($staffs as $staff)
+                @foreach ($courses as $course)
                 <tr>
                     <th scope="row">{{ $loop->index + 1 }}</th>
-                    <td>{{ $staff->staff_name }}</td>
-                    <td>{{ $staff->staff_surname }}</td>
-                    <td>{{ $staff->staff_phone }}</td>
-                    <td>{{ $staff->staff_email }}</td>
-                    <td>{{ $staff->staff_adress }}</td>
-                    <td>{{ $staff->staff_code }}</td>
+                    <td>{{ $course->course_name }}</td>
+                    <td>{{ $course->course_code }}</td>
                     <td>
-                        <form action="{{ route('staffs.destroy', $staff->id) }}" method="POST">
-                            <a href="{{ route('staffs.edit', $staff->id) }}" class="btn btn-info">Éditer</a>
+                        <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
+                            <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-info">Éditer</a>
                             {{-- <a href="#" class="btn btn-warning">update</a> --}}
 
                             @csrf
