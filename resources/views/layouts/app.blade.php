@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link href="{{ asset('dist/css/adminlte.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
@@ -88,7 +89,26 @@
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
  @yield('scripts')
-
+<!-- page script -->
+<script>
+$(function(){
+    @if(Session::has('success'))
+        Swal.fire({
+        icon: 'success',
+        title: 'Succès!',
+        text: '{{ Session::get("success") }}'
+    })
+    @endif
+});
+@if(Session::has('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{ Session::get("error") }}'
+    })
+@endif
+</script>
 </body>
 </html>
