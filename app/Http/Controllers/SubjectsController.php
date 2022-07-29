@@ -8,13 +8,25 @@ use Illuminate\Http\Request;
 class SubjectsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $subjects = Subject::all();
+
+        return view('subjects.index', compact('subjects'));
     }
 
     /**
@@ -24,7 +36,7 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
     /**
@@ -35,7 +47,17 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'subject_name' => 'required',
+            'subject_code' => 'required',
+            'semester' => 'required',
+            'class_id' => 'nullable',
+        ]);
+
+        Subject::create($request->all());
+
+        return redirect()->route('subjects.index')
+            ->with('success', 'Matière crée avec succès.');
     }
 
     /**
@@ -57,7 +79,7 @@ class SubjectsController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subjects.edit', compact('subject'));
     }
 
     /**
@@ -69,7 +91,17 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        //
+        $request->validate([
+            'subject_name' => 'required',
+            'subject_code' => 'required',
+            'semester' => 'required',
+            'class_id' => 'nullable',
+        ]);
+
+        $subject->update($request->all());
+
+        return redirect()->route('subjects.index')
+            ->with('success', 'Matière mis à jour avec succès.');
     }
 
     /**
@@ -80,6 +112,9 @@ class SubjectsController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject->delete();
+
+        return redirect()->route('subjects.index')
+            ->with('success', 'Matière supprimée avec succès');
     }
 }

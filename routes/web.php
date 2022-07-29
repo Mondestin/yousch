@@ -7,6 +7,7 @@ use App\Http\Controllers\CampusController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\AssiduitesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,6 @@ Route::resource('campus', CampusController::class);
 Route::resource('classes', ClassesController::class);
 Route::resource('courses', CoursesController::class);
 Route::resource('subjects', SubjectsController::class);
+Route::resource('assiduites', AssiduitesController::class);
 
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

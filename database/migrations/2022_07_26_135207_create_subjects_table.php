@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subject_name');
             $table->string('subject_code');
             $table->string('semester');
-            $table->string('class_id');
+            $table->string('class_id')->nullable(); # en attendant de créer la relation, je la mets à nullable
             $table->timestamps();
 
             $table->foreign('class_id')->references('id')->on('classes');

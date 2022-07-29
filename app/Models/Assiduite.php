@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Assiduite extends Model
 {
     use HasFactory;
 
-    protected $table = 'Subjects';
+    protected $table = 'Assiduites';
+
+    // protected $cast = ['justificatif' => 'array'];
 
     protected $fillable = [
-        'subject_name',
-        'subject_code',
-        'semester',
-        'class_id',
+        'justificatif',
+        'date',
+        'time',
     ];
 }
