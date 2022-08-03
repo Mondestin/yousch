@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+=======
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #000033;">
+>>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
     <a href="{{ route('home') }}" class="brand-link">
         <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
              alt="AdminLTE Logo"

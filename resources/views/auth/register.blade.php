@@ -25,7 +25,11 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg">Register a new membership</p>
 
+<<<<<<< HEAD
             <form method="post" action="{{ route('register') }}">
+=======
+            <form method="post" action="{{ route('users.store') }}">
+>>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
                 @csrf
 
                 <div class="input-group mb-3">
@@ -59,7 +63,20 @@
                     </span>
                     @enderror
                 </div>
+<<<<<<< HEAD
 
+=======
+                <div class="input-group mb-3">
+                     <select class="form-control" name="role[]" id="role" multiple="multiple">
+                     @foreach($roles as $role)
+                     
+                     <option value="{{ $role->id }}">{{ $role->name }}</option>
+                     
+                  
+                     @endforeach
+                     </select>
+                </div>
+>>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
                 <div class="input-group mb-3">
                     <input type="password"
                            name="password"
