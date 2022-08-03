@@ -43,8 +43,8 @@
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile <i class="fa-solid fa-user-cog"></i></a>
-                        <a href="#" class="btn btn-default btn-flat float-right"
+                        <a href="#" class="btn btn-default btn-flat border">Profile <i class="fa-solid fa-user-cog"></i></a>
+                        <a href="#" class="btn btn-default btn-flat float-right border"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
