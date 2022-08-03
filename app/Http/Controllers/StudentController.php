@@ -83,7 +83,7 @@ class StudentController extends Controller
                );
 
          
-                // save new citoyen
+                // save new Student
             $new_student = Student::create($form);
             return redirect()->route('students.index')->with(
                     'success',
