@@ -52,13 +52,8 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
-<<<<<<< HEAD
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-=======
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
@@ -130,11 +125,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-<<<<<<< HEAD
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
-=======
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
         ],
 
         'default' => [

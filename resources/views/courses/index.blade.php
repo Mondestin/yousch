@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('styles')
+@include('layouts.datatablestyles')
+@endsection
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -21,7 +23,7 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -58,4 +60,12 @@
         
     </div>
 
+@endsection
+@section('scripts')
+@include('layouts.datatablescripts')
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#datatable').DataTable();
+});
+</script>
 @endsection

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('campus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('staff_id')->references('id')->on('staffs');
             $table->string('campus_name', 50);
             $table->string('campus_location');
             $table->string('campus_phone', 50);
             $table->string('campus_email', 50);
-            $table->integer('staff_id');
             $table->timestamps();
 
-            $table->foreign('staff_id')->references('id')->on('staffs');
+    
         });
     }
 

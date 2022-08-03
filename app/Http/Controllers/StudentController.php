@@ -21,7 +21,7 @@ class StudentController extends Controller
                     <a href="#" class="btn btn-success btn-sm" title="Profile">
                           <i class="fa fa-eye" ></i>
                     </a>
-                    <a href="#" class="btn btn-warning btn-sm" title="Modifier">
+                    <a href="#" class="btn btn-warning btn-sm text-white" title="Modifier">
                     <i class="fa fa-pen" ></i>
               </a>
                     <a href="#" class="btn btn-danger btn-sm" title="Supprimer">

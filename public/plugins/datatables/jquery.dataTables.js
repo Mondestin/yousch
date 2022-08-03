@@ -11593,11 +11593,7 @@
 				 *      } );
 				 *    } );
 				 */
-<<<<<<< HEAD
-				"sNext": "Next",
-=======
 				"sNext": "Suivant",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 				/**
@@ -11620,11 +11616,7 @@
 				 *      } );
 				 *    } );
 				 */
-<<<<<<< HEAD
-				"sPrevious": "Previous"
-=======
 				"sPrevious": "Précédant"
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 			},
 	
 			/**
@@ -11647,11 +11639,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sEmptyTable": "No data available in table",
-=======
 			"sEmptyTable": "Aucune donnée disponible",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -11683,11 +11671,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
-=======
 			"sInfo": "Montrant _START_ à _END_ de _TOTAL_ entrées",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -11708,11 +11692,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
-=======
 			"sInfoEmpty": "Montrant 0 à 0 de 0 entrées",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -11734,11 +11714,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
-=======
 			"sInfoFiltered": "(filtré de _MAX_ entrées au total)",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -11856,11 +11832,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sLengthMenu": "Show _MENU_ entries",
-=======
 			"sLengthMenu": "Montrant _MENU_ entrées",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -11939,11 +11911,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sSearch": "Search:",
-=======
 			"sSearch": "Rechercher:",
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 	
 	
 			/**
@@ -12001,11 +11969,7 @@
 			 *      } );
 			 *    } );
 			 */
-<<<<<<< HEAD
-			"sZeroRecords": "No matching records found"
-=======
 			"sZeroRecords": "Aucun enregistrements correspondants trouvés"
->>>>>>> e19bcdabde31c9174269652d945e9d8c56c6b0b4
 		},
 	
 	
