@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Staff;
 
 class Campus extends Model
 {
@@ -18,4 +19,12 @@ class Campus extends Model
         'campus_email',
         'staff_id',
     ];
+
+    /**
+     * Get the staff that owns the campus.
+     */
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

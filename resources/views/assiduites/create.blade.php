@@ -65,9 +65,10 @@
                             </div>
                         </div>
                         
-
-                        <button type="submit" class="btn btn-primary mt-4">Soumettre</button>
-                        <a href="{{ route('home') }}" class="btn btn-danger mt-4">Retour</a>
+                        <div class="box-footer text-right">
+                            <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Soumettre</button>&nbsp;&nbsp;
+                            <a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+                        </div>
                     </form>
                     <hr>
                 </div>    

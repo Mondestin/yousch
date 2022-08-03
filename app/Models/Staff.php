@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Campus;
 
 class Staff extends Model
 {
@@ -29,6 +30,6 @@ class Staff extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class)->withDefault(['name' => 'Aucun']);
+        return $this->hasOne(User::class);
     }
 }
