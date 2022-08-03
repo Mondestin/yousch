@@ -11,9 +11,13 @@
     <link href="{{ asset('dist/css/adminlte.css') }}" rel="stylesheet">
 
     <!-- Datable bootstrap -->
-    <link href="{{ asset('dist/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('dist/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('dist/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('dist/css/jquery.dataTables.min.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('dist/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
     @yield('styles')
 </head>
@@ -91,9 +95,17 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Datatable bootstrap  -->
-<script src="{{asset('dist/js/bootstrap/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('dist/js/bootstrap/js/dataTables.bootstrap4.min.js')}}"></script>
+{{-- <script src="{{asset('dist/js/bootstrap/js/jquery.dataTables.min.js')}}"></script> --}}
+{{-- <script src="{{asset('dist/js/bootstrap/js/dataTables.bootstrap4.min.js')}}"></script> --}}
 {{-- <script src="{{asset('dist/js/bootstrap/js/jquery-3.5.1.js')}}"></script> --}}
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js')}}"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
 @yield('scripts')
 <script>
     $(document).ready(function() {

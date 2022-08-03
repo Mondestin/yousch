@@ -68,21 +68,21 @@
                                 <th>Justicatif</th>
                                 <th>Date</th>
                                 <th>Heure</th>
+                                <th>Retard</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($campus as $cmps)
+                            @foreach ($assiduites as $ass)
                             <tr>
                                 <th scope="row">{{ $loop->index + 1 }}</th>
-                                <td>{{ $cmps->campus_name }}</td>
-                                <td>{{ $cmps->campus_location }}</td>
-                                <td>{{ $cmps->campus_phone }}</td>
-                                <td>{{ $cmps->campus_email }}</td>
-                                <td>{{ $cmps->staff_id }}</td>
+                                <td>{{ $ass->justificatif ? 'Justifié' : 'Non-justifié'}}</td>
+                                <td>{{ $ass->date }}</td>
+                                <td>{{ $ass->time }}</td>
+                                <td>{{ $ass->retard ? 'Oui' : 'Non' }}</td>
                                 <td>
-                                    <form action="{{ route('campus.destroy', $cmps->id) }}" method="POST">
-                                        <a href="{{ route('campus.edit', $cmps->id) }}" class="btn btn-info">Éditer</a>
+                                    <form action="{{ route('assiduites.destroy', $ass->id) }}" method="POST">
+                                        <a href="{{ route('assiduites.edit', $ass->id) }}" class="btn btn-info">Éditer</a>
                                         {{-- <a href="#" class="btn btn-warning">update</a> --}}
 
                                         @csrf

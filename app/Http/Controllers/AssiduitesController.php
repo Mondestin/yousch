@@ -10,12 +10,23 @@ use Carbon\Carbon;
 class AssiduitesController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        # select * from 'assiduite'
         $assiduites = Assiduite::all();
 
         return view('assiduites.index', compact('assiduites'));
@@ -41,6 +52,7 @@ class AssiduitesController extends Controller
     {
         $request->validate([
             'justificatif' => 'required',
+            'retard' => 'required',
             'date' => 'required',
             'time' => 'required',
         ]);
@@ -84,6 +96,7 @@ class AssiduitesController extends Controller
     {
         $request->validate([
             'justificatif' => 'required',
+            'retard' => 'required',
             'date' => 'required',
             'time' => 'required',
         ]);

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('assiduites', function (Blueprint $table) {
             $table->id();
-            $table->string('justificatif');
+            $table->boolean('justificatif'); # 'is_late' , 'is_justify'
+            $table->boolean('retard');
             $table->date('date');
             $table->time('time');
             // $table->integer('unit_code');

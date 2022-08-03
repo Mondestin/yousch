@@ -15,6 +15,7 @@ class Assiduite extends Model
 
     protected $fillable = [
         'justificatif',
+        'retard',
         'date',
         'time',
     ];
