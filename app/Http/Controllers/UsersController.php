@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
      /**
@@ -67,7 +67,11 @@ class UsersController extends Controller
     public function store(Request $request)
     {
        
-
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
                     // generate a random password for the user
                     // $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
                     // $pass = array(); 

@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +28,13 @@ class StudentController extends Controller
             return datatables()->of(Student::select('*'))
             ->addColumn('action', function($data){
                 return '
-                    <a href="#" class="btn btn-success btn-sm" title="Profile">
+                    <a href="students/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
                           <i class="fa fa-eye" ></i>
                     </a>
-                    <a href="#" class="btn btn-warning btn-sm text-white" title="Modifier">
+                    <a href="students/'.$data->id.'/edit/" class="btn btn-warning btn-sm text-white" title="Modifier">
                     <i class="fa fa-pen" ></i>
-              </a>
-                    <a href="#" class="btn btn-danger btn-sm" title="Supprimer">
+                   </a>
+                    <a href="students/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
                           <i class="fa fa-trash" style="color: #fff;"></i>
                     </a>
                     ';
@@ -54,19 +64,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            // VALIDATIONS
-         
-            'student_name'=>  'required',
-            'student_sexe'=>  'required',
-            'student_surname'=>  'required',
-            'student_dob'=>  'required',
-            'student_pob'=>  'required',
-            'student_adress'=>  'required',
-            'student_phone'=>  'required',
-            'student_country'=>  'required',
-            'student_email'=>  ['required', 'string', 'email', 'max:255', 'unique:students']
-        ]);
+        $this->checkForm($request);
         $code="ESC".date('Y')."".rand(100,999);
         // GET DATA FROM THE FORM
         $form = array(
@@ -98,7 +96,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'show';
     }
 
     /**
@@ -109,7 +107,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+       return 'eidt';
     }
 
     /**
@@ -121,7 +119,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'eidt';
     }
 
     /**
@@ -133,5 +131,19 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function checkForm($request){
+        return $request->validate([
+            // VALIDATIONS
+            'student_name'=>  'required',
+            'student_sexe'=>  'required',
+            'student_surname'=>  'required',
+            'student_dob'=>  'required',
+            'student_pob'=>  'required',
+            'student_adress'=>  'required',
+            'student_phone'=>  'required',
+            'student_country'=>  'required',
+            'student_email'=>  ['required', 'string', 'email', 'max:255', 'unique:students']
+        ]);
     }
 }

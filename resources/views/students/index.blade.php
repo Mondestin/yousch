@@ -21,8 +21,8 @@
               </div>
               <div class="container-fluid m-3">
               <a class="btn btn-success float-right mr-4" href="{{ route('students.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a>
-              <a class="btn btn-primary float-right mr-4" href="#"><i class="fa fa-print"></i> Imprimer la liste</a>
-                  <a class="btn btn-success float-right mr-4" href="#"><i class="fa fa-file-excel"></i> Exporter en excel</a>
+              {{-- <a class="btn btn-primary float-right mr-4" href="#"><i class="fa fa-print"></i> Imprimer la liste</a>
+                  <a class="btn btn-success float-right mr-4" href="#"><i class="fa fa-file-excel"></i> Exporter en excel</a> --}}
               </div>      
               <div class="card-body">
                   <table class="table table-bordered table-striped" id="datatable">

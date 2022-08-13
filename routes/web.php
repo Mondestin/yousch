@@ -38,8 +38,17 @@ Route::resource('courses', CoursesController::class);
 Route::resource('subjects', SubjectsController::class);
 Route::resource('assiduites', AssiduitesController::class);
 
+//settings ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
-Auth::routes();
+
+//Tickets ROUTES
+Route::resource('plannings', PlanningsController::class);
+
+//Tickets ROUTES
+Route::resource('tickets', TicketsController::class);
+
+//Marks ROUTES
+Route::resource('marks', MarksController::class);
 
 //USER ROUTES
 Route::resource('users', UsersController::class);
