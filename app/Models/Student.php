@@ -11,6 +11,7 @@ class Student extends Model
     protected $fillable = [
         'avatar','student_code','student_name',
         'student_surname','student_dob','student_pob',
-        'student_adress','student_phone','student_email'
+        'student_adress','student_phone','student_email',
+        'student_ville','student_postal','student_sexe','student_country'
     ];
 }

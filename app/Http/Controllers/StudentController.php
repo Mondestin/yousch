@@ -34,7 +34,8 @@ class StudentController extends Controller
                     <a href="students/'.$data->id.'/edit/" class="btn btn-warning btn-sm text-white" title="Modifier">
                     <i class="fa fa-pen" ></i>
                    </a>
-                    <a href="students/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
+                   
+                    <a href="students/'.$data->id.'/delete" class="btn btn-danger btn-sm" title="Supprimer">
                           <i class="fa fa-trash" style="color: #fff;"></i>
                     </a>
                     ';
@@ -45,6 +46,7 @@ class StudentController extends Controller
         }
         return view('students.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -65,9 +67,21 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->checkForm($request);
-        $code="ESC".date('Y')."".rand(100,999);
-        // GET DATA FROM THE FORM
-        $form = array(
+        $code="EST".(date('Y')-1800)."".rand(1000,9999);
+
+        //if the user has a avatar to upload
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
+        }
+        else{
+                $filename="user.png";
+        }
+                  
+          // GET DATA FROM THE FORM
+          $form = array(
+            'avatar'=>  $filename, 
             'student_code'=>  $code,
             'student_name'=>  $request->student_name,
             'student_sexe'=>  $request->student_sexe,
@@ -78,7 +92,9 @@ class StudentController extends Controller
             'student_phone'=>  $request->student_phone,
             'student_country'=>  $request->student_country,
             'student_email'=>  $request->student_email, 
-               );
+            'student_ville'=>  $request->student_ville,
+            'student_postal'=>  $request->student_postal, 
+            );
 
          
                 // save new Student
@@ -96,7 +112,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return 'show';
+        $user=Student::findOrFail($id);
+        return view('students.profile', compact('user'));
     }
 
     /**
@@ -107,7 +124,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-       return 'eidt';
+        $user=Student::findOrFail($id);
+        return view('students.edit', compact('user'));
     }
 
     /**
@@ -119,7 +137,38 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'eidt';
+       
+        $this->checkForm($request);
+        //if the user has a avatar to upload
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
+        }
+        else{
+                $filename="user.png";
+        }
+                  
+          // GET DATA FROM THE FORM
+          $form = array(
+            'avatar'=>  $filename, 
+            'student_name'=>  $request->student_name,
+            'student_sexe'=>  $request->student_sexe,
+            'student_surname'=>  $request->student_surname,
+            'student_dob'=>  $request->student_dob,
+            'student_pob'=>  $request->student_pob,
+            'student_adress'=>  $request->student_adress,
+            'student_phone'=>  $request->student_phone,
+            'student_country'=>  $request->student_country,
+            'student_email'=>  $request->student_email, 
+            'student_ville'=>  $request->student_ville,
+            'student_postal'=>  $request->student_postal, 
+            );
+                //update Student
+           Student::whereId($id)->update($form);
+            return redirect()->route('students.index')->with(
+                    'success',
+                    'Etudiant actualisé avec succès');
     }
 
     /**
@@ -130,7 +179,10 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Student::whereId($id)->delete();
+              return redirect()->route('students.index')->with(
+                    'success',
+                    'Edudiant supprimé avec succès');
     }
     public function checkForm($request){
         return $request->validate([
@@ -143,7 +195,9 @@ class StudentController extends Controller
             'student_adress'=>  'required',
             'student_phone'=>  'required',
             'student_country'=>  'required',
-            'student_email'=>  ['required', 'string', 'email', 'max:255', 'unique:students']
+            'student_ville'=>  'required',
+            'student_postal'=>  'required',
+            'student_email'=>  ['required', 'string', 'email', 'max:255']
         ]);
     }
 }

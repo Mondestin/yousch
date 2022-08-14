@@ -56,6 +56,7 @@ Route::get('delete/users/{id}', [App\Http\Controllers\UsersController::class, 'd
 
 //STUDENTS ROUTES
 Route::resource('students', StudentController::class);
+Route::get('students/{id}/delete', [App\Http\Controllers\StudentController::class, 'destroy'])->name('del_student');
 
 //SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

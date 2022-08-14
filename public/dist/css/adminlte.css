@@ -35586,7 +35586,8 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   border: 3px solid #adb5bd;
   margin: 0 auto;
   padding: 3px;
-  width: 100px;
+  width: auto;
+  height: 200px;
 }
 
 .profile-username {

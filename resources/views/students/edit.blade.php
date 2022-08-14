@@ -6,7 +6,7 @@
      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-md-6">
-          <h1 class="text-black">Nouveau Etudiant</h1>
+          <h1 class="text-black">Modofier les informations de l'Etudiant</h1>
           </div>
         </div>
       </div>
@@ -14,9 +14,9 @@
 @endsection
 @section('content')
 <div class="container-fluid">
-   <form action="{{route('students.store')}}" method="POST" enctype="multipart/form-data">
+   <form action="{{route('students.update', $user->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
-    @method('POST')
+    @method('PATCH')
     <div class="box-body no-pad">
      <div class="col-md-12">
       <div class="card card-info card-purple card-outline">
@@ -33,7 +33,7 @@
               <div class="col-sm-4 col-sm-offset-1">
                 <div class="picture-container">
                   <div class="picture">
-                      <img src="../../img/user.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                      <img src="{{asset('uploads/students')}}/{{$user->avatar}}" class="picture-src" id="wizardPicturePreview" title=""/>
                       <input type="file" id="wizard-picture" name="avatar" class="form-control">
                   </div>
                   <h6>Photo</h6>
@@ -46,25 +46,25 @@
           <div class="form-group col-md-6">
             <label for="surname">Nom(s)</label>
             <span class="red">*</span>
-            <input type="text" class="form-control @error('student_surname') is-invalid @enderror" name="student_surname"  value="{{ old('student_surname') }}">
+            <input type="text" class="form-control @error('student_surname') is-invalid @enderror" name="student_surname"  value="{{ $user->student_surname }}">
           </div>
           <div class="form-group col-md-6">
             <label for="Name">Prénom(s)</label>
             <span class="red">*</span>
-            <input type="text" class="form-control @error('student_name') is-invalid @enderror" name="student_name"  value="{{ old('student_name') }}">
+            <input type="text" class="form-control @error('student_name') is-invalid @enderror" name="student_name"  value="{{ $user->student_name }}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
             <label for="dob">Date de Naissance</label>
             <span class="red">*</span>
-            <input type="date" class="form-control @error('student_dob') is-invalid @enderror" name="student_dob" value="{{ old('student_dob') }}">
+            <input type="date" class="form-control @error('student_dob') is-invalid @enderror" name="student_dob" value="{{ $user->student_dob }}">
           </div>
           <div class="form-group col-md-3">
             <label for="student_sexe">Sexe</label>
             <span class="red">*</span>
             <select name="student_sexe" class="form-control @error('student_sexe') is-invalid @enderror">
-              <option hidden="" value="">Sexe</option>
+              <option value="{{ $user->student_sexe }}" hidden>{{ $user->student_sexe }}</option>
               <option value="Masculin">Masculin</option>
               <option value="Féminin">Féminin</option>
             </select>
@@ -73,7 +73,7 @@
             <label for="Name">Pays</label>
             <span class="red">*</span>
           <select name="student_country" class="form-control @error('student_country') is-invalid @enderror">
-              <option value="" hidden=""hidden>Choisir un pays</option>
+             <option value="{{ $user->student_country }}">{{ $user->student_country }}</option>
               <option value="Afghanistan">Afghanistan </option>
                   <option value="Afrique Centrale">Afrique Centrale </option>
                   <option value="Afrique du Sud">Afrique du Sud </option>
@@ -333,31 +333,31 @@
           <div class="form-group col-md-12">
             <label for="Name">Lieu de Naissance</label>
             <span class="red">*</span>
-            <input type="text" class="form-control @error('student_pob') is-invalid @enderror" name="student_pob"  value="{{ old('student_pob') }}">
+            <input type="text" class="form-control @error('student_pob') is-invalid @enderror" name="student_pob"  value="{{ $user->student_pob }}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
             <label for="Name">Adresse</label>
             <span class="red">*</span>
-            <input type="text" class="form-control @error('student_adress') is-invalid @enderror" name="student_adress" value="{{ old('student_adress') }}">
+            <input type="text" class="form-control @error('student_adress') is-invalid @enderror" name="student_adress" value="{{ $user->student_adress }}">
           </div>
           <div class="form-group col-md-3">
             <label for="Name">Code Postal</label>
             <span class="red">*</span>
-            <input type="number" class="form-control @error('student_postal') is-invalid @enderror" name="student_postal" value="{{ old('student_postal') }}">
+            <input type="number" class="form-control @error('student_postal') is-invalid @enderror" name="student_postal" value="{{ $user->student_postal }}">
           </div>
           <div class="form-group col-md-3">
             <label for="Name">Ville</label>
             <span class="red">*</span>
-            <input type="text" class="form-control @error('student_ville') is-invalid @enderror" name="student_ville" value="{{ old('student_ville') }}">
+            <input type="text" class="form-control @error('student_ville') is-invalid @enderror" name="student_ville" value="{{ $user->student_ville }}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
             <label for="Name">Email</label>
             <span class="red">*</span>
-            <input type="email" class="form-control  @error('student_email') is-invalid @enderror" name="student_email"  value="{{ old('student_email') }}">
+            <input type="email" class="form-control  @error('student_email') is-invalid @enderror" name="student_email"  value="{{ $user->student_email }}">
             @error('student_email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -367,7 +367,7 @@
             <div class="form-group col-md-6">
               <label for="Name">Téléphone</label>
               <span class="red">*</span>
-              <input type="number" class="form-control @error('student_phone') is-invalid @enderror" name="student_phone"  value="{{ old('student_phone') }}">
+              <input type="number" class="form-control @error('student_phone') is-invalid @enderror" name="student_phone"  value="{{ $user->student_phone }}">
             </div>
         </div>  
 
@@ -378,7 +378,7 @@
    </div><!-- end right side elements -->
   </div>
   <div class="box-footer text-right">
-     <button type="submit" class="btn btn-success shadow"><i class="fa-solid fa-file-arrow-down"></i> Enregistrer</button>&nbsp;&nbsp;
+     <button type="submit" class="btn btn-success shadow"><i class="fa-solid fa-check"></i> Validé</button>&nbsp;&nbsp;
      <a href="{{route('students.index')}}" class="btn btn-primary shadow"><i class="fa-solid fa-arrow-left"></i> Retour</a>
   </div>
 </div>

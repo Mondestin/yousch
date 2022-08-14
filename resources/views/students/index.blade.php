@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('styles')
 @include('layouts.datatablestyles')
+		<!-- Jquery confirm css -->
+		<link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css')}}">
 @endsection
 @section('content-header')
      <div class="container-fluid">
@@ -46,6 +48,9 @@
 @endsection
 @section('scripts')
 @include('layouts.datatablescripts')
+<script src="{{asset('dist/js/delete-confirm.js')}} "></script>
+	<!-- Jquery confirm js -->
+	<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js')}}"></script>
 <script type="text/javascript">
 $(document).ready( function () {
 $.ajaxSetup({

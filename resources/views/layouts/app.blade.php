@@ -12,6 +12,7 @@
     <link href="{{ asset('dist/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
     @yield('styles')
+    @include('layouts.datatablestyles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
 <div class="wrapper">
@@ -92,6 +93,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
  @yield('scripts')
 <!-- page script -->
+@include('layouts.datatablescripts')
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#datatable').DataTable();
+});
+</script>
 <script>
 $(function(){
     @if(Session::has('success'))

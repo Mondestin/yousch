@@ -36,6 +36,12 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="#" class="nav-link {{ Request::is('marks*') ? 'active' : '' }}">
+        <i class="nav-icon fa-solid fa-list-ol"></i>
+        <p>Notes</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('classes.index') }}" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
          <i class="nav-icon fa-solid fa-user-tie"></i>
         <p>Classes</p>

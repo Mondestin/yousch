@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@section('styles')
-@include('layouts.datatablestyles')
-@endsection
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -60,12 +57,4 @@
         
     </div>
 
-@endsection
-@section('scripts')
-@include('layouts.datatablescripts')
-<script type="text/javascript">
-$(document).ready( function () {
-  $('#datatable').DataTable();
-});
-</script>
 @endsection
