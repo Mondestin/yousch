@@ -20,17 +20,17 @@
                 <h3 class="card-title"><b> Liste des utilisateurs</b></h3>
               </div>
               <div class="container-fluid m-3">
-              <a class="btn btn-success float-right mr-4" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> New</a>
-              <a class="btn btn-primary float-right mr-4" href="#"><i class="fa fa-print"></i> Imprimer la liste</a>
-                  <a class="btn btn-success float-right mr-4" href="#"><i class="fa fa-file-excel"></i> Exporter en excel</a>
+              {{-- <a class="btn btn-success float-right mr-4" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a> --}}
+              {{-- <a class="btn btn-primary float-right mr-4" href="#"><i class="fa fa-print"></i> Imprimer la liste</a>
+                  <a class="btn btn-success float-right mr-4" href="#"><i class="fa fa-file-excel"></i> Exporter en excel</a> --}}
               </div>      
               <div class="card-body">
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
-                    <th>Name</th>
+                    <th>Nom(s) complet</th>
                     <th>Email</th>
-                    <th>Created at</th>
+                    <th>Dernière connexion</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -54,7 +54,7 @@ processing: true,
 serverSide: true,
 ajax: "{{ url('users') }}",
 columns: [
-{ data: 'name', name: 'name' },
+{ data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
 { data: 'created_at', name: 'created_at' },
 {data: 'action', name: 'action', orderable: false},
