@@ -232,34 +232,7 @@ class StudentController extends Controller
     public function updateUser(Request $request, $id)
     {
 
-        //validate
-        $request->validate([
-            'name'         =>  'required',
-            'email'        =>  'required',
-        ]);
 
-         //if the user has a avatar to upload
-        if($request->hasFile('avatar')){
-            // find and remove the old picture from files
-            $data=User::findOrFail($id);
-            File::delete(public_path('/uploads/users/' .  $data->avatar));
-
-            // save the new picture
-            $avatar = $request->file('avatar');
-            $filename =rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/users/' . $filename ) );
-        }
-        else{
-            // get and save the same picture
-            $data=User::findOrFail($id);
-            $filename=$data->avatar;      
-        }
-        //put all user info into an array
-        $user_form = array(
-            'name'          =>  $request->name,
-            'email'         =>  $request->email,
-            'avatar'        =>  $filename,
-            );
         //check if the user want to change the password
         if($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null){
             $hashedPassword=Auth::user()->getAuthPassword();
