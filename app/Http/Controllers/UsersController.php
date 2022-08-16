@@ -32,8 +32,8 @@ class UsersController extends Controller
             return datatables()->of(User::select('*'))
             ->addColumn('action', function($data){
                 return '
-                    <a href="users/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
-                          <i class="fa fa-eye" ></i>
+                    <a href="users/'.$data->id.'/edit" class="btn btn-warning btn-sm text-white" title="Modifier">
+                          <i class="fa fa-pen" ></i>
                     </a>
                     <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
                           <i class="fa fa-trash" style="color: #fff;"></i>
@@ -114,9 +114,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //find the specific user by id
-        $user=User::findOrFail($id);
-        return view('users.profile', compact('user'));
+       abort("404");
     }
 
     /**
@@ -127,7 +125,10 @@ class UsersController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return "edit";
+           //find the specific user by id
+           $user=User::where('id', $id)->with('roles')->first();
+           $rolesAll=Role::all();
+           return view('users.edit', compact('user','rolesAll'));
 
     }
 
@@ -151,6 +152,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        return "delete";
+        User::whereId($id)->delete();
+        return redirect()->route('users.index')->with(
+              'success',
+              'Utilisateur supprimé avec succès');
     }
 }

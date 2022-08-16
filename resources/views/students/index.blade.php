@@ -30,6 +30,7 @@
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
+                    <th>#</th>
                     <th>Code</th>
                     <th>Nom(s)</th>
                     <th>Prénom(s)</th>
@@ -63,6 +64,7 @@ processing: true,
 serverSide: true,
 ajax: "{{ url('students') }}",
 columns: [
+{data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
 { data: 'student_code', name: 'student_code' },
 { data: 'student_surname', name: 'student_surname' },
 { data: 'student_name', name: 'student_name' },

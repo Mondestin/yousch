@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
-
+use Auth;
+use Mail;
+use Image;
+use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class StudentController extends Controller
 {
         /**
@@ -26,6 +33,7 @@ class StudentController extends Controller
     {
         if(request()->ajax()) {
             return datatables()->of(Student::select('*'))
+            ->addIndexColumn()
             ->addColumn('action', function($data){
                 return '
                     <a href="students/'.$data->id.'" class="btn btn-success btn-sm" title="Profile">
@@ -40,8 +48,6 @@ class StudentController extends Controller
                     </a>
                     ';
             })
-            ->rawColumns(['action'])
-            ->addIndexColumn()
             ->make(true);
         }
         return view('students.index');
@@ -200,4 +206,97 @@ class StudentController extends Controller
             'student_email'=>  ['required', 'string', 'email', 'max:255']
         ]);
     }
+
+    
+    public function updateUser(Request $request, $id)
+    {
+
+        //validate
+        $request->validate([
+            'name'         =>  'required',
+            'email'        =>  'required',
+        ]);
+
+         //if the user has a avatar to upload
+        if($request->hasFile('avatar')){
+            // find and remove the old picture from files
+            $data=User::findOrFail($id);
+            File::delete(public_path('/uploads/users/' .  $data->avatar));
+
+            // save the new picture
+            $avatar = $request->file('avatar');
+            $filename =rand() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/users/' . $filename ) );
+        }
+        else{
+            // get and save the same picture
+            $data=User::findOrFail($id);
+            $filename=$data->avatar;      
+        }
+        //put all user info into an array
+        $user_form = array(
+            'name'          =>  $request->name,
+            'email'         =>  $request->email,
+            'avatar'        =>  $filename,
+            );
+        //check if the user want to change the password
+        if($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null){
+            $hashedPassword=Auth::user()->getAuthPassword();
+            // check if the user submitted the right password
+            if (Hash::check($request->password_actuel, $hashedPassword)) {
+                // if The passwords match validate the password length
+                    $request->validate([
+                        'password' => ['required', 'string', 'min:8', 'confirmed'],
+                    ]);
+                        //add the password in the array of the form
+                        $user_form['password']=Hash::make($request->password);
+                        // update the user info
+                        $data=User::whereId($id)->update($user_form);
+                        return redirect()->route('users.index')->with(
+                                        'success',
+                                        'Utilisateur a été actualisé avec succès');
+            }
+            else {
+                return redirect()->back()->with(
+                    'error',
+                    'le mot de passe actuel est incorrect');
+            }
+        }
+        $data=User::whereId($id)->update($user_form);
+        return redirect()->route('users.index')->with(
+                        'success',
+                        'Utilisateur a été actualisé avec succès');
+ 
+    }
+
+    //restore user password
+   public function restore(Request $request, $id)
+   {
+         // generate a random new password for the user
+         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+         $pass = array(); 
+         $combLen = strlen($comb) - 1; 
+         for ($i = 0; $i < 8; $i++) {
+             $n = rand(0, $combLen);
+             $pass[] = $comb[$n];
+         }
+          $passw=implode($pass);
+          $password= Hash::make($passw);
+
+          //find the user info
+          $data=User::findOrFail($id);
+
+          $user = array('name'=>$data->name,
+                'email'=>$data->email,
+                'pass'=>$passw);
+            $usermail=$data->email;
+          // send maill of the new password to the user
+           \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
+        //  update the new password to
+            User::whereId($id)->update(['password' => $password]);
+  
+         return redirect()->route('users.index')->with(
+                'success',
+                'le mot de password a été réinitialié avec succès');
+   }
 }
