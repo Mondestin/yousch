@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Mail;
 use Image;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -74,11 +74,11 @@ class StudentController extends Controller
     {
         $this->checkForm($request);
         $code="EST".(date('Y')-1800)."".rand(1000,9999);
-
+   // dd('dknkjgnkdng');
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            $filename = $code.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
         }
         else{
@@ -102,7 +102,28 @@ class StudentController extends Controller
             'student_postal'=>  $request->student_postal, 
             );
 
-         
+         // generate a random new password for the user
+         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+         $pass = array(); 
+         $combLen = strlen($comb) - 1; 
+         for ($i = 0; $i < 8; $i++) {
+             $n = rand(0, $combLen);
+             $pass[] = $comb[$n];
+         }
+          $passw=implode($pass);
+          $password= Hash::make($passw);
+
+          $user = array(
+                'type' => "Student",
+                'email'=>$request->student_email,
+                'password'=>$password);
+ 
+            $usermail=$request->email;
+          // send maill of the new password to the user
+          //  \Mail::to($usermail)->send(new \App\Mail\Newuserstudent($user));
+        //  create the new user
+            User::create($user);
+  
                 // save new Student
             $new_student = Student::create($form);
             return redirect()->route('students.index')->with(
@@ -148,7 +169,7 @@ class StudentController extends Controller
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            $filename =$id.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
         }
         else{
@@ -225,7 +246,7 @@ class StudentController extends Controller
 
             // save the new picture
             $avatar = $request->file('avatar');
-            $filename =rand() . '.' . $avatar->getClientOriginalExtension();
+            $filename =rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/users/' . $filename ) );
         }
         else{
@@ -291,7 +312,7 @@ class StudentController extends Controller
                 'pass'=>$passw);
             $usermail=$data->email;
           // send maill of the new password to the user
-           \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
+        //    \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
         //  update the new password to
             User::whereId($id)->update(['password' => $password]);
   

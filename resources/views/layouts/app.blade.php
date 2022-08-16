@@ -29,7 +29,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('img/user.png')}}"
                          class="user-image img-circle" alt="User Image" style="border: 1px solid #6633CC!important;">
-                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                    <span class="d-none d-md-inline">{{ Auth::user()->email }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" >
                     <!-- User image -->
@@ -38,7 +38,7 @@
                              class="img-circle"
                              alt="User Image" style="border: 2px solid #6633CC!important;">
                         <p  class="text-dark">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->email }}
                             <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>

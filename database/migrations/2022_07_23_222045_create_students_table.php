@@ -23,9 +23,11 @@ return new class extends Migration
             $table->string('student_pob');
             $table->text('student_adress');
             $table->string('student_phone');
-            $table->string('student_email')->unique();
-            // $table->integer('campus_id');
-            // $table->integer('course_id');
+            $table->string('student_email',64)->unique();
+               $table->string('student_ville');
+               $table->string('student_postal');
+               $table->string('student_sexe');
+               $table->string('student_country');
             $table->timestamps();
         });
     }

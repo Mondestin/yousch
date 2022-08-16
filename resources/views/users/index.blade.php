@@ -28,7 +28,8 @@
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
-                    <th>Nom(s) complet</th>
+                      <th>#</th>
+                    <th>Type</th>
                     <th>Email</th>
                     <th>Dernière connexion</th>
                     <th>Action</th>
@@ -54,7 +55,8 @@ processing: true,
 serverSide: true,
 ajax: "{{ url('users') }}",
 columns: [
-{ data: 'name', name: 'name' },
+{data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
+{ data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
 { data: 'created_at', name: 'created_at' },
 {data: 'action', name: 'action', orderable: false},

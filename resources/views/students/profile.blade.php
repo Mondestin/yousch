@@ -19,13 +19,13 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
+                       src="{{asset('uploads/students')}}/{{$user->avatar}}"
+                       alt="Student profile picture">
                 </div>
 
                 <h3 class="profile-username text-center">{{$user->student_name}} {{$user->student_surname}}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{$user->student_code}}</p>
 
          
               </div>
