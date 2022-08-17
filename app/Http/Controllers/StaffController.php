@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Auth;
+use Mail;
+use Image;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class StaffController extends Controller
 {
     /**
@@ -67,20 +73,27 @@ class StaffController extends Controller
             'user_id' => 'required',
         ]);
 
-        // $type = "staff";
-        // $form = array(
-        //     'staff_name' => $request->staff_name,
+          // generate a random new password for the user
+         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+         $pass = array(); 
+         $combLen = strlen($comb) - 1; 
+         for ($i = 0; $i < 8; $i++) {
+             $n = rand(0, $combLen);
+             $pass[] = $comb[$n];
+         }
+          $passw=implode($pass);
+          $password= Hash::make($passw);
 
-
-        // );
-        // // create a new user
-        // $user = array(
-        //     'email' => $request->staff_email,
-        //     'password' => Hash::make("Estiam"),
-        //     'type'     => "staff",
-        // );
-        // Staff::create($form);
-        // User::create($user);
+          $user = array(
+                'type' => "Staff",
+                'email'=>$request->staff_email,
+                'password'=>$password);
+ 
+            $usermail=$request->email;
+          // send maill of the new password to the user
+          //  \Mail::to($usermail)->send(new \App\Mail\Newuserstudent($user));
+        //  create the new user
+            User::create($user);
 
         Staff::create($request->all());
 

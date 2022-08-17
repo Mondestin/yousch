@@ -28,7 +28,7 @@
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
-                    <th>Nom(s) complet</th>
+                    <th>Type</th>
                     <th>Email</th>
                     <th>Dernière connexion</th>
                     <th>Action</th>

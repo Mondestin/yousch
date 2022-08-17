@@ -74,12 +74,14 @@ class StudentController extends Controller
     {
         $this->checkForm($request);
         $code="EST".(date('Y')-1800)."".rand(1000,9999);
-   // dd('dknkjgnkdng');
+
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            $filename ='avatar'.rand(1000,9999). '.' . $avatar->getClientOriginalExtension();
+            
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
+            
         }
         else{
                 $filename="user.png";
