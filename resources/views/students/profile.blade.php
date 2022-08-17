@@ -58,13 +58,13 @@
                         <div class="form-group mt-3">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Mot de passe actuel</label>
                           <div class="col-sm-12">
-                            <input type="password" class="form-control @error('password_actuel') is-invalid @enderror" name="password_actuel">
+                            <input type="password" class="form-control @error('password_actuel') is-invalid @enderror" name="password_actuel" required>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Nouveau Mot de passe</label>
                           <div class="col-sm-12">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -75,7 +75,7 @@
                         <div class="form-group ">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Confirmer le Mot de passe</label>
                           <div class="col-sm-12">
-                            <input id="password-confirm" type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                            <input id="password-confirm" type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" required>
                           </div>
                         </div>
                         <div class="form-group mt-5">

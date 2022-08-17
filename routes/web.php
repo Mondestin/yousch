@@ -9,6 +9,7 @@ use App\Http\Controllers\CampusController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\AssiduitesController;
 /*

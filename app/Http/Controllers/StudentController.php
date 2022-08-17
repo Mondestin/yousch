@@ -237,7 +237,7 @@ class StudentController extends Controller
     public function updateUser(Request $request, $id)
     {
 
-
+        $user_form[]=""; 
         //check if the user want to change the password
         if($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null){
             $hashedPassword=Auth::user()->getAuthPassword();
@@ -261,10 +261,6 @@ class StudentController extends Controller
                     'le mot de passe actuel est incorrect');
             }
         }
-        $data=User::whereId($id)->update($user_form);
-        return redirect()->route('users.index')->with(
-                        'success',
-                        'Utilisateur a été actualisé avec succès');
  
     }
 
