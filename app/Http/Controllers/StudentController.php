@@ -78,8 +78,12 @@ class StudentController extends Controller
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
+
             $filename ='avatar'.rand(1000,9999). '.' . $avatar->getClientOriginalExtension();
             
+
+            $filename = $code.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
+
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
             
         }
@@ -119,10 +123,15 @@ class StudentController extends Controller
                 'type' => "Student",
                 'email'=>$request->student_email,
                 'password'=>$password);
- 
-            $usermail=$request->email;
+
+            $mail_data=array(
+                'name' => $request->student_name." ".$request->student_surname,
+                'email'=>$request->student_email,
+                'password'=>$passw);
+
+            $usermail=$request->student_email;
           // send maill of the new password to the user
-          //  \Mail::to($usermail)->send(new \App\Mail\Newuserstudent($user));
+            \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
             User::create($user);
   
@@ -171,7 +180,7 @@ class StudentController extends Controller
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename =$userName . '.' . $avatar->getClientOriginalExtension();
+            $filename =$id.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
         }
         else{
@@ -234,34 +243,7 @@ class StudentController extends Controller
     public function updateUser(Request $request, $id)
     {
 
-        //validate
-        $request->validate([
-            'name'         =>  'required',
-            'email'        =>  'required',
-        ]);
-
-         //if the user has a avatar to upload
-        if($request->hasFile('avatar')){
-            // find and remove the old picture from files
-            $data=User::findOrFail($id);
-            File::delete(public_path('/uploads/users/' .  $data->avatar));
-
-            // save the new picture
-            $avatar = $request->file('avatar');
-            $filename =rand() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/users/' . $filename ) );
-        }
-        else{
-            // get and save the same picture
-            $data=User::findOrFail($id);
-            $filename=$data->avatar;      
-        }
-        //put all user info into an array
-        $user_form = array(
-            'name'          =>  $request->name,
-            'email'         =>  $request->email,
-            'avatar'        =>  $filename,
-            );
+        $user_form[]=""; 
         //check if the user want to change the password
         if($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null){
             $hashedPassword=Auth::user()->getAuthPassword();
@@ -285,10 +267,6 @@ class StudentController extends Controller
                     'le mot de passe actuel est incorrect');
             }
         }
-        $data=User::whereId($id)->update($user_form);
-        return redirect()->route('users.index')->with(
-                        'success',
-                        'Utilisateur a été actualisé avec succès');
  
     }
 
@@ -314,7 +292,7 @@ class StudentController extends Controller
                 'pass'=>$passw);
             $usermail=$data->email;
           // send maill of the new password to the user
-           \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
+        //    \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
         //  update the new password to
             User::whereId($id)->update(['password' => $password]);
   

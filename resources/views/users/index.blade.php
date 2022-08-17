@@ -28,6 +28,10 @@
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
+<<<<<<< HEAD
+=======
+                      <th>#</th>
+>>>>>>> 9d7d0a056869c1da4ea2ee79dffc61a369ba9062
                     <th>Type</th>
                     <th>Email</th>
                     <th>Dernière connexion</th>
@@ -54,6 +58,7 @@ processing: true,
 serverSide: true,
 ajax: "{{ url('users') }}",
 columns: [
+{data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
 { data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
 { data: 'created_at', name: 'created_at' },

@@ -19,13 +19,13 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
+                       src="{{asset('uploads/students')}}/{{$user->avatar}}"
+                       alt="Student profile picture">
                 </div>
 
                 <h3 class="profile-username text-center">{{$user->student_name}} {{$user->student_surname}}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{$user->student_code}}</p>
 
          
               </div>
@@ -55,45 +55,16 @@
                       <form method="POST" action="{{ route('userUpdate',$user->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        <div class="form-group ">
-                          <label for="name" class="col-sm-2">Nom(s)</label>
-                          <div class="col-sm-12">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" >
-                          </div>
-                        </div>
-                        <div class="form-group ">
-                          <label for="email" class="col-sm-2 col-form-label">Email</label>
-                          <div class="col-sm-12">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" >
-                          </div>
-                        </div>
-                        <div class="form-group ">
-                          <label for="inputName2" class="col-sm-2">Niveau d'accès</label>
-                          <div class="col-sm-12">
-                            <input type="text" class="form-control" value="{{ $user->level }}" readonly>
-                          </div>
-                        </div>
-                        <div class="form-group ">
-                          <label for="inputName2" class="col-sm-2">Avatar</label>
-                          <div class="col-sm-12">
-                            <input type="file" name="avatar" class="form-control" title="Entré votre avatar">
-                          </div>
-                        </div>
-                        <div class="card-header p-2 mt-3">
-                          <ul class="nav nav-pills">
-                            <h4 class="m-1 bold"> <b>Information de Connexion</b> </h4>
-                          </ul>
-                        </div><!-- /.card-header -->
                         <div class="form-group mt-3">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Mot de passe actuel</label>
                           <div class="col-sm-12">
-                            <input type="password" class="form-control @error('password_actuel') is-invalid @enderror" name="password_actuel">
+                            <input type="password" class="form-control @error('password_actuel') is-invalid @enderror" name="password_actuel" required>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Nouveau Mot de passe</label>
                           <div class="col-sm-12">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -104,7 +75,7 @@
                         <div class="form-group ">
                           <label for="inputSkills" class="col-sm-12 col-form-label">Confirmer le Mot de passe</label>
                           <div class="col-sm-12">
-                            <input id="password-confirm" type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                            <input id="password-confirm" type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" required>
                           </div>
                         </div>
                         <div class="form-group mt-5">
