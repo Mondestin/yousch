@@ -117,10 +117,15 @@ class StudentController extends Controller
                 'type' => "Student",
                 'email'=>$request->student_email,
                 'password'=>$password);
- 
-            $usermail=$request->email;
+
+            $mail_data=array(
+                'name' => $request->student_name." ".$request->student_surname,
+                'email'=>$request->student_email,
+                'password'=>$passw);
+
+            $usermail=$request->student_email;
           // send maill of the new password to the user
-          //  \Mail::to($usermail)->send(new \App\Mail\Newuserstudent($user));
+            \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
             User::create($user);
   

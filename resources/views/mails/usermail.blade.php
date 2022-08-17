@@ -10,15 +10,14 @@
     <div class="container mt-5">
      <div class="card text-center col-md-6">
   <div class="card-body">
-    <h3 class="card-title">Yousch Nouveau Utilisateur</h3>
-    <p class=" mt-5">Bonjour {{ $user['name'] }},  <br> <br><br>voici vos informations de connection à Bridge PNR: </p>
+    <p class=" mt-5">Bonjour <strong>{{ $mail_data['name'] }}</strong>,  <br> <br><br>voici vos informations de connection à Yousch: </p>
 
-    <p class="card-text mt-2"> <strong>Email:  {{$user['email']}}</strong> </p>
-    <p class="card-text mt-2"> <strong>Mot de passe: {{$user['pass']}}</strong></p>
-    <a href="http://consulat-benin-pnr.org/login" class="btn btn-primary">Cliquer ici pour vous connecter</a>
+    <p class="card-text mt-2"> <strong>Email:  {{$mail_data['email']}}</strong> </p>
+    <p class="card-text mt-2"> <strong>Mot de passe: {{$mail_data['password']}}</strong></p>
+    <a href="#" class="btn btn-primary">Cliquer ici pour vous connecter</a>
   </div><br><br>
   <div class="card-footer text-danger">
-    Ces information sont strictement confidentiel et personnel. <br>
+    Ces informations sont strictement confidentiel et personnel. <br>
       Ne les partager surtout pas.
   </div>
     </div>

@@ -14,7 +14,7 @@
     <p class=" mt-5">Bonjour {{ $user['name'] }},  <br> <br><br>voici votre nouveau mot de passe: </p>
 
     <p class="card-text mt-2"> <strong>Mot de passe: {{$user['pass']}}</strong></p>
-    <a href="http://consulat-benin-pnr.org/login" class="btn btn-primary">Cliquer ici pour vous connecter</a>
+    <a href="#" class="btn btn-primary">Cliquer ici pour vous connecter</a>
   </div><br><br>
   <div class="card-footer text-danger">
     Celui-ci est strictement confidentiel et personnel. <br>
