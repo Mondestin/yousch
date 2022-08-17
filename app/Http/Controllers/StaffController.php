@@ -36,7 +36,6 @@ class StaffController extends Controller
         # on va également bénéficier des méthodes de qu'offre l'orm pour la récupération des données.
 
         $staffs = Staff::all();
-        // dd($staffs);
         return view('staffs.index', compact("staffs"));
     }
 
@@ -47,9 +46,8 @@ class StaffController extends Controller
      */
     public function create()
     {
-        # on aura besoin definir quel utilisateur fait partir du staff
+ 
         $users = User::all();
-
         return view('staffs.create', compact("users"));
     }
 
@@ -87,11 +85,11 @@ class StaffController extends Controller
           $user = array(
                 'type' => "Staff",
                 'email'=>$request->staff_email,
-                'password'=>$password);
+                'password'=>$passw);
  
-            $usermail=$request->email;
+            $usermail=$request->staff_email;
           // send maill of the new password to the user
-          //  \Mail::to($usermail)->send(new \App\Mail\Newuserstudent($user));
+          \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
         //  create the new user
             User::create($user);
 

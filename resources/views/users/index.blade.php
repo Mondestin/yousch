@@ -28,10 +28,7 @@
                   <table class="table table-bordered table-striped" id="datatable">
                     <thead>
                     <tr>
-<<<<<<< HEAD
-=======
                       <th>#</th>
->>>>>>> 9d7d0a056869c1da4ea2ee79dffc61a369ba9062
                     <th>Type</th>
                     <th>Email</th>
                     <th>Dernière connexion</th>

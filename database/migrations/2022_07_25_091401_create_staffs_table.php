@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('staff_avatar')->nullable();
             $table->string('staff_adress')->nullable();
             $table->string('staff_code')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         
         });

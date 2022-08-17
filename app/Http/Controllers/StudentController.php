@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
+use App\Models\Role;
 class StudentController extends Controller
 {
         /**
@@ -77,10 +79,7 @@ class StudentController extends Controller
 
         //if the user has a avatar to upload
         if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');
-
-            $filename ='avatar'.rand(1000,9999). '.' . $avatar->getClientOriginalExtension();
-            
+            $avatar = $request->file('avatar');         
 
             $filename = $code.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
 
@@ -131,10 +130,10 @@ class StudentController extends Controller
 
             $usermail=$request->student_email;
           // send maill of the new password to the user
-            \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
+            // \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
-            User::create($user);
-  
+             $newuser=User::create($user);
+             $newuser->roles()->attach([1 => 1]);
                 // save new Student
             $new_student = Student::create($form);
             return redirect()->route('students.index')->with(
@@ -243,7 +242,7 @@ class StudentController extends Controller
     public function updateUser(Request $request, $id)
     {
 
-        $user_form[]=""; 
+        $user_form=array(); 
         //check if the user want to change the password
         if($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null){
             $hashedPassword=Auth::user()->getAuthPassword();
@@ -255,6 +254,8 @@ class StudentController extends Controller
                     ]);
                         //add the password in the array of the form
                         $user_form['password']=Hash::make($request->password);
+
+                        // dd($user_form);
                         // update the user info
                         $data=User::whereId($id)->update($user_form);
                         return redirect()->route('users.index')->with(
