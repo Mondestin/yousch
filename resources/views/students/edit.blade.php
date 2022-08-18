@@ -364,10 +364,21 @@
                     </span>
                     @enderror
             </div>
-            <div class="form-group col-md-6">
+
+            <div class="form-group col-md-3">
               <label for="Name">Téléphone</label>
               <span class="red">*</span>
               <input type="number" class="form-control @error('student_phone') is-invalid @enderror" name="student_phone"  value="{{ $user->student_phone }}">
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="inputState">Campus</label>
+              <select id="inputState" class="form-control" name="campus_id">
+                  <option selected>Choisir...</option>
+                  @foreach ($campus as $cmps) 
+                      <option value="{{ $cmps->id }}">{{ $cmps->campus_name}}</option>
+                  @endforeach
+              </select>
             </div>
         </div>  
 

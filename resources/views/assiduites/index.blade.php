@@ -4,20 +4,9 @@
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Assiduité</h3>
-        
-        @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
-
-        {{-- <div class="d-flex justify-content-between mb-4">
-            {{ $staffs->links() }} pagination
-            <div><a href="{{ route('assiduites.create') }}" class="btn btn-success">Nouveau</a></div>
-        </div> --}}
 
         <div class="container-fluid mt-5">
-            <div class="card card-outline card-primary">
+            <div class="card card-outline card-purple">
 
                 <div class="card-header">
                     <h3 class="card-title">Période d'absence</h3>
