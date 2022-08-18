@@ -91,7 +91,9 @@ class StaffController extends Controller
           // send maill of the new password to the user
           \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
         //  create the new user
-            User::create($user);
+            $newuser=User::create($user);
+            //add role staff to the user
+            $newuser->roles()->attach([2 => 2]);
 
         Staff::create($request->all());
 
