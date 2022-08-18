@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Datatables;
 use App\Models\Role;
-use Illuminate\Support\Arr;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 class UsersController extends Controller
 {
      /**
