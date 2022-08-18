@@ -353,6 +353,7 @@
             <input type="text" class="form-control @error('student_ville') is-invalid @enderror" name="student_ville" value="{{ old('student_ville') }}">
           </div>
         </div>
+
         <div class="row">
           <div class="form-group col-md-6">
             <label for="Name">Email</label>
@@ -364,14 +365,25 @@
                     </span>
                     @enderror
             </div>
-            <div class="form-group col-md-6">
+
+            <div class="form-group col-md-3">
               <label for="Name">Téléphone</label>
               <span class="red">*</span>
               <input type="number" class="form-control @error('student_phone') is-invalid @enderror" name="student_phone"  value="{{ old('student_phone') }}">
             </div>
-        </div>  
 
-        </div>         
+            <div class="form-group col-md-3">
+              <label for="inputState">Campus</label>
+              <select id="inputState" class="form-control" name="campus_id">
+                  <option selected>Choisir...</option>
+                  @foreach ($campus as $cmps) 
+                      <option value="{{ $cmps->id }}">{{ $cmps->campus_name}}</option>
+                  @endforeach
+              </select>
+            </div>
+          </div>  
+        </div>  
+               
        </div><!-- end Left side elements -->
 
   
