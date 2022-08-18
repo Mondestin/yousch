@@ -12,6 +12,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\AssiduitesController;
+use App\Http\Controllers\UnitsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,11 +33,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
+// Units ROUTES
+Route::resource('units', UnitsController::class);
+
+// Staff ROUTES
 Route::resource('staffs', StaffController::class);
+
+// Campus ROUTES
 Route::resource('campus', CampusController::class);
+
+// Classes ROUTES
 Route::resource('classes', ClassesController::class);
+
+// Courses ROUTES
 Route::resource('courses', CoursesController::class);
+
+// Subjects ROUTES
 Route::resource('subjects', SubjectsController::class);
+
+// Assiduite ROUTES
 Route::resource('assiduites', AssiduitesController::class);
 
 //settings ROUTES
