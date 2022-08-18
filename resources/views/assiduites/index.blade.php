@@ -17,7 +17,7 @@
         </div> --}}
 
         <div class="container-fluid mt-5">
-            <div class="card card-outline card-primary">
+            <div class="card card-outline card-purple">
 
                 <div class="card-header">
                     <h3 class="card-title">Période d'absence</h3>

@@ -3,12 +3,16 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-
         <h3 class="border-bottom pb-2 mb-4">Staffs</h3>
-        
+
+        {{-- @if (session()->has("success"))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif --}}
 
         <div class="container-fluid mt-5">
-            <div class="card card-outline card-primary">
+            <div class="card card-purple card-outline">
 
                 <div class="card-header">
                     <h3 class="card-title">Liste des membres du staff</h3>
@@ -21,12 +25,13 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Prénom</th>
-                                    <th scope="col">Téléphone</th>
+                                    <th scope="col">Nom(s)</th>
+                                    <th scope="col">Prénom(s)</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Campus</th>
-                                    <th scope="col">Code</th>
+                                    <th scope="col">Date de naissance</th>
+                                    <th scope="col">Lieu de naissance</th>
+                                    <th scope="col">Téléphone</th>
+                                    <th scope="col">Matricule</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -36,9 +41,10 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $staff->staff_name }}</td>
                                     <td>{{ $staff->staff_surname }}</td>
-                                    <td>{{ $staff->staff_phone }}</td>
                                     <td>{{ $staff->staff_email }}</td>
-                                    <td>{{ $staff->staff_adress }}</td>
+                                    <td>{{ $staff->staff_dob }}</td>
+                                    <td>{{ $staff->staff_pob }}</td>
+                                    <td>{{ $staff->staff_phone }}</td>
                                     <td>{{ $staff->staff_code }}</td>
                                     <td>
                                         <form action="{{ route('staffs.destroy', $staff->id) }}" method="POST">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Mail;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
 
 class StaffController extends Controller
 {
@@ -51,9 +49,10 @@ class StaffController extends Controller
     public function create()
     {
 
+        # on génére le code automatiquement qu'on envoit à la vue
+        $code_gen = "STA" . (date('Y') - 1800) . "" . rand(1000, 9999);
 
-        $users = User::all();
-        return view('staffs.create', compact("users"));
+        return view('staffs.create', compact("code_gen"));
     }
 
     /**
@@ -64,16 +63,31 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        //if the user has a avatar to upload
+
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('/uploads/students/'), $filename);
+            $data['avatar'] = $filename;
+        } else {
+            $filename = "user.png";
+        }
+
         # on récupère les données soumis dans le formulaire, on les vérifie et on les stock en bdd
         $request->validate([
-            'staff_name' => 'required',
-            'staff_surname' => 'required',
-            'staff_phone' => 'required',
-            'staff_email' => 'required',
-            'staff_avatar' => 'nullable',
-            'staff_adress' => 'required',
-            'staff_code' => 'nullable',
-            'user_id' => 'required',
+            'staff_code' => 'required',
+            'staff_name' =>  'required',
+            'staff_sexe' =>  'required',
+            'staff_surname' =>  'required',
+            'staff_dob' =>  'required',
+            'staff_pob' =>  'required',
+            'staff_adress' =>  'required',
+            'staff_phone' =>  'required',
+            'staff_country' =>  'required',
+            'staff_ville' =>  'required',
+            'staff_postal' =>  'required',
+            'staff_email' =>  ['required', 'string', 'email', 'max:255']
         ]);
 
 
@@ -123,11 +137,7 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        # si l'utilisateur souhaite modifier ses infos
-        # on retourne le formulaire
-        $users = User::all();
-
-        return view('staffs.edit', compact('staff', 'users'));
+        return view('staffs.edit', compact('staff'));
     }
 
     /**
@@ -141,15 +151,29 @@ class StaffController extends Controller
     {
         # c'est ici que l'on traite les mises à jour du profil
 
+        //if the user has a avatar to upload
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('/uploads/students/'), $filename);
+            $data['avatar'] = $filename;
+        } else {
+            $filename = "user.png";
+        }
+
         $request->validate([
-            'staff_name' => 'required',
-            'staff_surname' => 'required',
-            'staff_phone' => 'required',
-            'staff_email' => 'required',
-            'staff_avatar' => 'nullable',
-            'staff_adress' => 'required',
-            'staff_code' => 'nullable',
-            'user_id' => 'required',
+            'staff_code' => 'required',
+            'staff_name' =>  'required',
+            'staff_sexe' =>  'required',
+            'staff_surname' =>  'required',
+            'staff_dob' =>  'required',
+            'staff_pob' =>  'required',
+            'staff_adress' =>  'required',
+            'staff_phone' =>  'required',
+            'staff_country' =>  'required',
+            'staff_ville' =>  'required',
+            'staff_postal' =>  'required',
+            'staff_email' =>  ['required', 'string', 'email', 'max:255']
         ]);
 
         $staff->update($request->all());
