@@ -152,9 +152,19 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::whereId($id)->delete();
-        return redirect()->route('users.index')->with(
-              'success',
-              'Utilisateur supprimé avec succès');
+
+        try {
+            if (User::whereId($id)->delete()) {
+                 dd("dhfoidhofhdf");
+             } 
+             else{ 
+
+                 dd("True");
+              }
+        } catch (Exception $e) {
+            return redirect()->route('users.index')->with(
+              'error',
+              $e);
+        }
     }
 }

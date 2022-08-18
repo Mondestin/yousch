@@ -5,12 +5,15 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Créer un nouveau staff</h3>
         
+<<<<<<< HEAD
         @if (session()->has("success"))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
         @endif
 
+=======
+>>>>>>> 59cab52387a8b4fdcb09536c9019e406915626ef
         <!-- Content Row -->
         <div class="row">
             <!-- Donut Chart -->
@@ -86,16 +89,6 @@
                                     <input type="text" class="form-control" name="staff_code">
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputState">Utilisateur</label>
-                                <select id="inputState" class="form-control" name="user_id">
-                                    <option selected>Choisir...</option>
-                                    @foreach ($users as $user) 
-                                        <option value="{{ $user->id }}">{{ $user->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
                             <div class="box-footer text-right">
                                 <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Soumettre</button>&nbsp;&nbsp;
                                 <a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>

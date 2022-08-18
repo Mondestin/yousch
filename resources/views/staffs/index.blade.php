@@ -3,13 +3,9 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Staff</h3>
+
+        <h3 class="border-bottom pb-2 mb-4">Staffs</h3>
         
-        @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
 
         <div class="container-fluid mt-5">
             <div class="card card-outline card-primary">
