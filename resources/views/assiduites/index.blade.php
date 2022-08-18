@@ -4,12 +4,6 @@
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Assiduité</h3>
-        
-        @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
 
         {{-- <div class="d-flex justify-content-between mb-4">
             {{ $staffs->links() }} pagination
@@ -34,6 +28,7 @@
                                     <th>Date</th>
                                     <th>Heure</th>
                                     <th>Retard</th>
+                                    {{-- <th>Etudiant</th> --}}
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -48,15 +43,10 @@
                                     <td>
                                         <form action="{{ route('assiduites.destroy', $ass->id) }}" method="POST">
                                             <a href="{{ route('assiduites.edit', $ass->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pen" ></i></a>
-                                            {{-- <a href="#" class="btn btn-warning">update</a> --}}
 
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer')"><i class="fa fa-trash" style="color: #fff;"></i></button>
-                                            {{-- <a href="#" class="btn btn-danger btn-sm" title="Supprimer">
-                                                <i class="fa fa-trash" style="color: #fff;"></i>
-                                            </a> --}}
-                                            {{-- <a href="#" class="btn btn-danger">Delete</a> --}}
                                         </form>
                                     </td>
                                 </tr>

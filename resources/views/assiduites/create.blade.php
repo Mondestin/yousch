@@ -33,6 +33,20 @@
                     <form method="post" action="{{ route('assiduites.store') }}">
                         @csrf
                         
+
+                        {{-- <div class="form-row">
+                            
+                            <div class="form-group col-md-12">
+                                <label for="inputState">Nom</label>
+                                <select id="inputState" class="form-control" name="staff_id">
+                                    <option selected>Choisir...</option>
+                                    @foreach ($students as $student) 
+                                        <option value="{{ $student->id }}">{{ $student->student_surname}} {{ $student->student_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> --}}
+
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name">Date</label>
