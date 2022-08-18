@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Datatables;
 use App\Models\Role;
-use Illuminate\Support\Arr;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 class UsersController extends Controller
 {
      /**
@@ -152,7 +154,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-       
+
         try {
             if (User::whereId($id)->delete()) {
                  dd("dhfoidhofhdf");
@@ -166,7 +168,5 @@ class UsersController extends Controller
               'error',
               $e);
         }
-
-       
     }
 }

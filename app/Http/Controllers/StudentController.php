@@ -88,6 +88,7 @@ class StudentController extends Controller
 
             $filename = $code.rand(100000, 999999) . '.' . $avatar->getClientOriginalExtension();
 
+
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/students/' . $filename));
         } else {
             $filename="user.png";
@@ -265,7 +266,7 @@ class StudentController extends Controller
                     ]);
                 //add the password in the array of the form
                 $user_form['password']=Hash::make($request->password);
-
+                
                 // dd($user_form);
                 // update the user info
                 $data=User::whereId($id)->update($user_form);

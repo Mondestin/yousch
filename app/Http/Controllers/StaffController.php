@@ -19,7 +19,7 @@ class StaffController extends Controller
      *
      * @return void
      */
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -37,6 +37,7 @@ class StaffController extends Controller
         # on va également bénéficier des méthodes de qu'offre l'orm pour la récupération des données.
 
         $staffs = Staff::all();
+
         return view('staffs.index', compact("staffs"));
     }
 
@@ -47,6 +48,7 @@ class StaffController extends Controller
      */
     public function create()
     {
+
         # on génére le code automatiquement qu'on envoit à la vue
         $code_gen = "STA" . (date('Y') - 1800) . "" . rand(1000, 9999);
 
@@ -88,6 +90,7 @@ class StaffController extends Controller
             'staff_email' =>  ['required', 'string', 'email', 'max:255']
         ]);
 
+
         // generate a random new password for the user
         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
         $pass = array();
@@ -109,7 +112,6 @@ class StaffController extends Controller
         \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
         //  create the new user
         User::create($user);
-
         Staff::create($request->all());
 
         return redirect()->route('staffs.index')
