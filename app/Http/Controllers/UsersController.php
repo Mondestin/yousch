@@ -69,43 +69,6 @@ class UsersController extends Controller
     public function store(Request $request)
     {
        
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-                    // generate a random password for the user
-                    // $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
-                    // $pass = array(); 
-                    // $combLen = strlen($comb) - 1; 
-                    // for ($i = 0; $i < 8; $i++) {
-                    //     $n = rand(0, $combLen);
-                    //     $pass[] = $comb[$n];
-                    // }
-                    //  $passw=implode($pass);
-       
-                     $email = $request['email'];
-                     $name = $request['name'];
-                     $password= Hash::make($request['password']);
-                     
-                    //  $user = array('name'=>$name,
-                    //          'email'=>$email,
-                    //          'pass'=>$passw);
-                    //   \Mail::to($email)->send(new \App\Mail\SendMail($user));
-                      
-               
-                    $user = User::create([
-                   'name' => $email,
-                   'email' => $name,
-                   'password' => $password,
-               ]);
-               $user->roles()->attach($request['role']);
-             if ($user) {
-                dd("bon");
-             }
-             else {
-                dd("pas bon");
-             }
     }
 
     /**
@@ -154,15 +117,13 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-
+       
         try {
-            if (User::whereId($id)->delete()) {
-                 dd("dhfoidhofhdf");
-             } 
-             else{ 
-
-                 dd("True");
-              }
+               $del=User::whereId($id)->first();
+               $del->roles()->detach();
+               $del->delete();
+               return redirect()->route('users.index')->with(
+              'success', 'Utilisateur supprimé avec succès');
         } catch (Exception $e) {
             return redirect()->route('users.index')->with(
               'error',

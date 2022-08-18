@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+<<<<<<< HEAD
+=======
 
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
 class StaffController extends Controller
 {
     /**
@@ -37,7 +40,10 @@ class StaffController extends Controller
         # on va également bénéficier des méthodes de qu'offre l'orm pour la récupération des données.
 
         $staffs = Staff::all();
+<<<<<<< HEAD
+=======
 
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
         return view('staffs.index', compact("staffs"));
     }
 
@@ -48,11 +54,17 @@ class StaffController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
+ 
+        $users = User::all();
+        return view('staffs.create', compact("users"));
+=======
 
         # on génére le code automatiquement qu'on envoit à la vue
         $code_gen = "STA" . (date('Y') - 1800) . "" . rand(1000, 9999);
 
         return view('staffs.create', compact("code_gen"));
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
     }
 
     /**
@@ -90,6 +102,32 @@ class StaffController extends Controller
             'staff_email' =>  ['required', 'string', 'email', 'max:255']
         ]);
 
+<<<<<<< HEAD
+          // generate a random new password for the user
+         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+         $pass = array(); 
+         $combLen = strlen($comb) - 1; 
+         for ($i = 0; $i < 8; $i++) {
+             $n = rand(0, $combLen);
+             $pass[] = $comb[$n];
+         }
+          $passw=implode($pass);
+          $password= Hash::make($passw);
+
+          $user = array(
+                'type' => "Staff",
+                'email'=>$request->staff_email,
+                'password'=>$passw);
+ 
+            $usermail=$request->staff_email;
+          // send maill of the new password to the user
+          \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
+        //  create the new user
+            $newuser=User::create($user);
+            //add role staff to the user
+            $newuser->roles()->attach([2 => 2]);
+=======
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
 
         // generate a random new password for the user
         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';

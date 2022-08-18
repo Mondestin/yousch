@@ -4,7 +4,10 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Créer un nouveau staff</h3>
         
+<<<<<<< HEAD
+=======
 
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
         <!-- Content Row -->
         <div class="row">
             <!-- Donut Chart -->
@@ -80,6 +83,10 @@
                                     <input type="text" class="form-control" name="staff_code">
                                 </div>
                             </div>
+<<<<<<< HEAD
+           
+=======
+>>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
                             <div class="box-footer text-right">
                                 <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Soumettre</button>&nbsp;&nbsp;
                                 <a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>
