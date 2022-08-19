@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class UnitsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,10 @@ class UnitsController extends Controller
      */
     public function index()
     {
-        //
+        $units = Unit::all();
+
+        return view('units.index', compact('units'));
+        // return view('units.index');
     }
 
     /**
@@ -23,7 +37,10 @@ class UnitsController extends Controller
      */
     public function create()
     {
-        //
+        # on devra ajouter un cours à l'unité d'enseignement
+        $courses = Course::all();
+
+        return view('students.create', compact('courses'));
     }
 
     /**
@@ -45,7 +62,11 @@ class UnitsController extends Controller
      */
     public function show($id)
     {
-        //
+        # on va afficher les matières contenu dans l'unité d'enseignement
+        // $courses = Course::all();
+
+        return view('units.show', compact('id'));
+        // return view('units.show', compact('id', 'course'));
     }
 
     /**

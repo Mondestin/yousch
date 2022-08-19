@@ -4,16 +4,6 @@
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Staffs</h3>
-<<<<<<< HEAD
-        
-=======
-
-        {{-- @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif --}}
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
 
         <div class="container-fluid mt-5">
             <div class="card card-purple card-outline">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Mail;
@@ -48,10 +49,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('staffs.create', compact("users"));
-
-
+        
         # on génére le code automatiquement qu'on envoit à la vue
         $code_gen = "STA" . (date('Y') - 1800) . "" . rand(1000, 9999);
 
