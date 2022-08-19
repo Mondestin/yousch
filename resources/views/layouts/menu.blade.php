@@ -30,6 +30,12 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('units.index') }}" class="nav-link {{ Request::is('units*') ? 'active' : '' }}">
+        <i class="nav-icon fa-solid fa-sitemap"></i>
+        <p>UE</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('subjects.index') }}" class="nav-link {{ Request::is('subjects*') ? 'active' : '' }}">
          <i class="nav-icon fa-solid fa-list"></i>
         <p>Matières</p>
