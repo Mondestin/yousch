@@ -3,13 +3,7 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Créer un nouvelle matière</h3>
-        
-        @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
+        <h3 class="border-bottom pb-2 mb-4">Ajouter une nouvelle matière</h3>
 
         <!-- Content Row -->
         <div class="container-fluid">
@@ -39,16 +33,32 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="semester">Semester</label>
-                                <input type="text" class="form-control" name="semester">
+                                <label for="inputState">Semestre</label>
+                                <select id="inputState" class="form-control" name="semester">
+                                    <option selected>Choisir...</option>
+                                        <option value="1">Semestre 1</option>
+                                        <option value="0">Semestre 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="code">Code</label>
+                                <input type="text" class="form-control" name="subject_code">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="semester">Unité d'enseignement</label>
+                                <select id="inputState" class="form-control" name="unit_id">
+                                    <option selected>Choisir...</option>
+                                    @foreach ($units as $unit) 
+                                        <option value="{{ $unit->id }}">{{ $unit->unit_name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                             
-                        <div class="form-group">
-                            <label for="code">Code</label>
-                            <input type="text" class="form-control" name="subject_code">
-                        </div>
-
                         <div class="box-footer text-right">
                             <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Soumettre</button>&nbsp;&nbsp;
                             <a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>

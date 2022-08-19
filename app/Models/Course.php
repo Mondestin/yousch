@@ -16,5 +16,5 @@ class Course extends Model
         'course_code',
     ];
 
-    // un cours ne peut appartenir qu'à une seule unité d'enseignement
+    // un parcours ne peut appartenir qu'à une seule unité d'enseignement
 }

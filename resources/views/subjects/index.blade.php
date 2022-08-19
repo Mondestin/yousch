@@ -25,9 +25,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom</th>
+                                    <th scope="col">Nom de la matière</th>
                                     <th scope="col">Semestre</th>
-                                    <th scope="col">Code</th>
+                                    <th scope="col">Code de la matière</th>
+                                    <th scope="col">Unité d'enseignement de la matière</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -36,8 +37,9 @@
                                 <tr>
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $subject->subject_name }}</td>
-                                    <td>{{ $subject->semester }}</td>
+                                    <td>{{ $subject->semester ? 'Semestre 1' : 'Semestre 2' }}</td>
                                     <td>{{ $subject->subject_code }}</td>
+                                    <td>{{ $subject->unit->unit_code }}</td>
                                     <td>
                                         <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST">
                                             <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pen" ></i></a>

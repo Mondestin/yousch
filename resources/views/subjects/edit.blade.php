@@ -36,19 +36,35 @@
                         @method('PUT')
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="name">Nom</label>
+                                <label for="name">Nom de la matière</label>
                                 <input type="text" class="form-control" name="subject_name" value="{{ $subject->subject_name }}">
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="semester">Semestre</label>
-                                <input type="text" class="form-control" name="semester" value="{{ $subject->semester }}">
+                                <label for="inputState">Semestre</label>
+                                <select id="inputState" class="form-control" name="semester" value="{{ $subject->semester }}">
+                                    <option selected>Choisir...</option>
+                                        <option value="1">Semestre 1</option>
+                                        <option value="0">Semestre 2</option>
+                                </select>
                             </div>
                         </div>
-                            
-                        <div class="form-group">
-                            <label for="code">Code</label>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="code">Code de la matière</label>
                             <input type="text" class="form-control" name="subject_code" value="{{ $subject->subject_code }}">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="semester">Unité d'enseignement</label>
+                                <select id="inputState" class="form-control" name="unit_id" value="{{ $subject->unit_id }}" multiple="multiple">
+                                    <option selected>Choisir...</option>
+                                    @foreach ($units as $unit) 
+                                        <option value="{{ $unit->id }}">{{ $unit->unit_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="box-footer text-right">
