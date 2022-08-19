@@ -3,13 +3,13 @@
 @section('content')
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Plus de détails</h3>
+        <h3 class="border-bottom pb-2 mb-4">{{ $unit->unit_name }}</h3>
 
         <div class="container-fluid mt-5">
             <div class="card card-outline card-purple">
 
                 <div class="card-header">
-                    <h3 class="card-title">Liste des cours de l'unité {{ $unit->unit_name }}</h3>
+                    <h3 class="card-title">Details</h3>
                 </div>
             
                 <div class="card-body">
