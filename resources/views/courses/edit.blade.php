@@ -5,11 +5,11 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Modifier une cours</h3>
         
-        @if (session()->has("success"))
+        {{-- @if (session()->has("success"))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
-        @endif
+        @endif --}}
 
         <!-- Content Row -->
         <div class="container-fluid">

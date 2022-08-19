@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class UnitsController extends Controller
@@ -40,7 +41,8 @@ class UnitsController extends Controller
         # on devra ajouter un cours à l'unité d'enseignement
         $courses = Course::all();
 
-        return view('students.create', compact('courses'));
+        return view('units.create', compact('courses'));
+        // return view('units.create');
     }
 
     /**
@@ -51,7 +53,16 @@ class UnitsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'unit_name' => 'required',
+            'unit_code' => 'required',
+            'course_id' => 'nullable',
+        ]);
+
+        Unit::create($request->all());
+
+        return redirect()->route('units.index')
+            ->with('success', 'Unité d\'enseignement crée avec succès.');
     }
 
     /**
@@ -60,13 +71,13 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Unit $unit)
     {
         # on va afficher les matières contenu dans l'unité d'enseignement
-        // $courses = Course::all();
+        $courses = Course::all();
 
-        return view('units.show', compact('id'));
-        // return view('units.show', compact('id', 'course'));
+        // return view('units.show', compact('unit'));
+        return view('units.show', compact('unit', 'courses'));
     }
 
     /**
@@ -75,9 +86,12 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Unit $unit)
     {
-        //
+        # on pourra modifier un cours de l'unité d'enseignement
+        $courses = Course::all();
+
+        return view('units.edit', compact('unit', 'courses'));
     }
 
     /**
@@ -87,9 +101,18 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Unit $unit)
     {
-        //
+        $request->validate([
+            'unit_name' => 'required',
+            'unit_code' => 'required',
+            'course_id' => 'nullable',
+        ]);
+
+        $unit->update($request->all());
+
+        return redirect()->route('units.index')
+            ->with('success', 'Unité d\'enseignement mis à jour avec succès.');
     }
 
     /**
@@ -98,8 +121,11 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Unit $unit)
     {
-        //
+        $unit->delete();
+
+        return redirect()->route('units.index')
+            ->with('success', 'Unité d\'enseignement supprimée avec succès');
     }
 }
