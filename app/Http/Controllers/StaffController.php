@@ -161,7 +161,10 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        return view('staffs.edit', compact('staff'));
+
+ 
+        $staffs = Staff::all();
+        return view('staffs.edit', compact('staff', 'staffs'));
     }
 
     /**

@@ -1,18 +1,21 @@
 @extends('layouts.app')
-
+@section('content-header')
+     <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-md-6">
+          <h1 class="text-black">Campus</h1>
+          </div>
+        </div>
+      </div>
+ 
+@endsection
 @section('content')
-
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Campus</h3>
-        
-
-
-        <div class="container-fluid mt-5">
+        <div class="container-fluid">
             <div class="card card-purple card-outline">
-
                 <div class="card-header">
                     <h3 class="card-title">Liste des campus</h3>
-                    <a class="btn btn-success float-right mr-4" href="{{ route('campus.create') }}"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a class="btn btn-success float-right mr-4" href="{{ route('campus.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -20,11 +23,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nom</th>
-                                    <th>Lieu</th>
+                                    <th>Nom du Campus</th>
+                                    <th>Responsable</th>
+                                    <th>Adresse</th>
                                     <th>Téléphone</th>
                                     <th>Email</th>
-                                    <th>Responsables</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -33,19 +36,18 @@
                                 <tr>
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $cmps->campus_name }}</td>
+                                    <td>{{ $cmps->staff->staff_name }}</td>
                                     <td>{{ $cmps->campus_location }}</td>
                                     <td>{{ $cmps->campus_phone }}</td>
                                     <td>{{ $cmps->campus_email }}</td>
-                                    <td>{{ $cmps->staff->staff_name }}</td>
                                     <td>
                                         <form action="{{ route('campus.destroy', $cmps->id) }}" method="POST">
-                                            <a href="{{ route('campus.edit', $cmps->id) }}" class="btn btn-info sm"><i class="fa fa-pen" ></i></a>
-                                            {{-- <a href="#" class="btn btn-warning">update</a> --}}
+                                            <a href="{{ route('campus.edit', $cmps->id) }}" class="btn btn-warning btn-sm text-white"><i class="fa fa-pen" ></i></a>
 
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer')"><i class="fa fa-trash" style="color: #fff;"></i></button>
-                                            {{-- <a href="#" class="btn btn-danger">Delete</a> --}}
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer')"><i class="fa fa-trash" style="color: #fff;"></i></button>
+                                           
                                         </form>
                                     </td>
                                 </tr>

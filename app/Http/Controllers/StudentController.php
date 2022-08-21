@@ -36,7 +36,13 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return datatables()->of(Student::select('*'))
+            return datatables()->of(Student::whereHas('campus')
+            ->get()
+            ->transform(function ($item) {
+                 $item->campus_name = $item->campus->pluck('campus_name');
+                 return $item;
+             })
+            ->all())
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
                 return '

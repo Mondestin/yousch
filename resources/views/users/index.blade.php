@@ -31,6 +31,7 @@
                       <th>#</th>
                     <th>Type</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Dernière connexion</th>
                     <th>Action</th>
                     </tr>
@@ -58,6 +59,7 @@ columns: [
 {data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
 { data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
+{ data: 'get_role', name: 'name' },
 { data: 'created_at', name: 'created_at' },
 {data: 'action', name: 'action', orderable: false},
 ],

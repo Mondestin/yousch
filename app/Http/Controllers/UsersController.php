@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Datatables;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -30,8 +30,17 @@ class UsersController extends Controller
      */
     public function index()
     {
+
         if(request()->ajax()) {
-            return datatables()->of(User::select('*'))
+            return datatables()->of(
+                User::whereHas('roles')
+               ->get()
+               ->transform(function ($item) {
+                    $item->get_role = $item->roles->pluck('name')->implode(', ');
+                    return $item;
+                })
+               ->all()
+            )
             ->addColumn('action', function($data){
                 return '
                     <a href="users/'.$data->id.'/edit" class="btn btn-warning btn-sm text-white" title="Modifier">
