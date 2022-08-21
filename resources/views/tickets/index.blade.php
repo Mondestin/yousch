@@ -1,21 +1,10 @@
 @extends('layouts.app')
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
 @section('content')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Tickets</h3>
         
         <div class="container-fluid mt-5">
 
-    <div class="bg-body">
-        <h3 class="pb-2 mb-4">Tickets</h3>
-<<<<<<< HEAD
-=======
-        
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
         <div class="container-fluid mt-3">
 
             <div class="card card-outline card-primary">
@@ -23,10 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Liste des tickets</h3>
 
-<<<<<<< HEAD
-                    <a class="btn btn-success float-right mr-4" href="{{ route('subjects.create') }}"><i class="fa fa-plus"></i> Nouveau ticket</a>
-=======
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
+
 
                     <a class="btn btn-success float-right mr-4" href="{{ route('tickets.create') }}"><i class="fa fa-plus"></i> Nouveau ticket</a>
                 </div>
@@ -59,10 +45,6 @@
                                         5
                                     </td>
                                 </tr>
-<<<<<<< HEAD
-=======
-
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
                             </tbody>
                         </table>
                     </div>

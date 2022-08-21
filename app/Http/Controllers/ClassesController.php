@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classe;
 use Illuminate\Http\Request;
-
+use App\Models\Classe;
 class ClassesController extends Controller
 {
     /**
@@ -65,7 +64,7 @@ class ClassesController extends Controller
      * @param  \App\Models\Classe  $classe
      * @return \Illuminate\Http\Response
      */
-    public function show(Classe $classe)
+    public function show($id)
     {
         //
     }
@@ -76,8 +75,9 @@ class ClassesController extends Controller
      * @param  \App\Models\Classe  $classe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classe $classe)
+    public function edit($id)
     {
+        $classe=Classe::findOrFail($id);
         return view('classes.edit', compact('classe'));
     }
 
@@ -88,13 +88,13 @@ class ClassesController extends Controller
      * @param  \App\Models\Classe  $classe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classe $classe)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'class_name' => 'required',
             'class_code' => 'required',
         ]);
-
+        $classe=Classe::findOrFail($id);
         $classe->update($request->all());
 
         return redirect()->route('classes.index')

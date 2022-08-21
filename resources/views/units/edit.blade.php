@@ -1,28 +1,24 @@
 @extends('layouts.app')
-
+@section('content-header')
+     <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-md-6">
+          <h1 class="text-black">Modifier l'unité d'enseignement</h1>
+          </div>
+        </div>
+      </div>
+ 
+@endsection
 @section('content')
 
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Modifier l'unité d'enseignement</h3>
-
+    <div class="my-3 p-3 bg-body rounded">
         <!-- Content Row -->
         <div class="container-fluid">
             <!-- Area Chart -->
-            <div class="card card-purple card-outline">
-                <div class="card-header py-3">
+            <div class="card card-purple card-outline col-6">
+                <div class="card-header">
                     <h6 class="m-0 font-weight-bold text-purple">Détails</h6>
                 </div>
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <div class="card-body">
                     <form method="post" action="{{ route('units.update', $unit->id) }}">
                         @csrf
@@ -52,7 +48,7 @@
 
                         <div class="box-footer text-right">
                             <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Enregistrer</button>&nbsp;&nbsp;
-                            <a href="{{ route('home') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+                            <a href="{{ route('units.index') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                         </div>
                     </form>
                     <hr>

@@ -1,22 +1,23 @@
 @extends('layouts.app')
-
+@section('content-header')
+     <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-md-6">
+          <h1 class="text-black">Unités d'enseignement</h1>
+          </div>
+        </div>
+      </div>
+ 
+@endsection
 @section('content')
-
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Matières</h3>
-        
-        {{-- @if (session()->has("success"))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif --}}
-
-        <div class="container-fluid mt-5">
+    <div class="p-3 bg-body rounded">
+        <div class="container-fluid ">
             <div class="card card-outline card-purple">
 
                 <div class="card-header">
                     <h3 class="card-title">Unités d'enseignement</h3>
-                    <a class="btn btn-success float-right mr-4" href="{{ route('units.create') }}"><i class="fa fa-plus"></i> Nouveau</a>
+                    <a class="btn btn-success float-right mr-4" href="{{ route('units.create') }}">
+                        <i class="fa fa-plus"></i> Nouvelle entrée</a>
                 </div>
             
                 <div class="card-body">

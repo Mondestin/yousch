@@ -16,7 +16,7 @@ class Subject extends Model
         'subject_name',
         'subject_code',
         'semester',
-        // 'class_id',
+        'class_id',
         'unit_id',
     ];
 
@@ -28,5 +28,13 @@ class Subject extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+    
+    /**
+     * Get the unit that owns the subject.
+     */
+    public function classe()
+    {
+        return $this->belongsTo(Classe::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Subject;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -38,8 +39,9 @@ class SubjectsController extends Controller
     public function create()
     {
         $units = Unit::all();
+        $classes = Classe::all();
 
-        return view('subjects.create', compact('units'));
+        return view('subjects.create', compact('units','classes'));
     }
 
     /**
@@ -54,8 +56,8 @@ class SubjectsController extends Controller
             'subject_name' => 'required',
             'subject_code' => 'required',
             'semester' => 'required',
-            // 'class_id' => 'nullable',
-            'unit_id' => 'nullable',
+            'class_id' => 'required',
+            'unit_id' => 'required',
         ]);
 
         Subject::create($request->all());
@@ -84,8 +86,8 @@ class SubjectsController extends Controller
     public function edit(Subject $subject)
     {
         $units = Unit::all();
-
-        return view('subjects.edit', compact('subject', 'units'));
+        $classes = Classe::all();
+        return view('subjects.edit', compact('subject', 'units','classes'));
     }
 
     /**
@@ -101,8 +103,8 @@ class SubjectsController extends Controller
             'subject_name' => 'required',
             'subject_code' => 'required',
             'semester' => 'required',
-            // 'class_id' => 'nullable',
-            'unit_id' => 'nullable',
+            'class_id' => 'required',
+            'unit_id' => 'required',
         ]);
 
         $subject->update($request->all());
