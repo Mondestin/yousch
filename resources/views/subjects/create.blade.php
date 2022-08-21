@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputState">Classe</label>
-                                <select class="form-control" name="semester" required>
+                                <select class="form-control" name="class_id" required>
                                     <option hidden="hideen" value="" selected>Choisir la classe</option>
                                     @foreach ($classes as $class) 
                                         <option value="{{ $class->id }}">{{ $class->class_code}}</option>

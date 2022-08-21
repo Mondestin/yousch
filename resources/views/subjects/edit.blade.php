@@ -31,15 +31,13 @@
 
                             <div class="form-group col-md-6">
                                 <label for="inputState">Semestre</label>
-                                <select id="inputState" class="form-control" name="semester" value="{{ $subject->semester }}">
-                                    <option selected>Choisir...</option>
+                                <select class="form-control" name="semester">
+                                    <option value="{{ $subject->semester }}" hidden>{{ $subject->semester ? 'Semestre 1' : 'Semestre 2' }}</option>
                                         <option value="1">Semestre 1</option>
                                         <option value="0">Semestre 2</option>
                                 </select>
                             </div>
                      
-                        
-                        
                             <div class="form-group col-md-6">
                                 <label for="code">Code de la matière</label>
                             <input type="text" class="form-control" name="subject_code" value="{{ $subject->subject_code }}">
@@ -47,17 +45,17 @@
 
                             <div class="form-group col-md-6">
                                 <label for="semester">Unité d'enseignement</label>
-                                <select id="inputState" class="form-control" name="unit_id" value="{{ $subject->unit_id }}" multiple="multiple">
-                                    <option selected>Choisir...</option>
+                                <select id="inputState" class="form-control" name="unit_id">
+                                    <option value="{{ $subject->unit->id }}" hidden>{{ $subject->unit->unit_code }}</option>
                                     @foreach ($units as $unit) 
-                                        <option value="{{ $unit->id }}">{{ $unit->unit_name}}</option>
+                                        <option value="{{ $unit->id }}">{{ $unit->unit_code}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputState">Classe</label>
-                                <select class="form-control" name="semester" required>
-                                    <option hidden="hideen" value="" selected>Choisir la classe</option>
+                                <select class="form-control" name="class_id" required>
+                                    <option value="{{ $subject->class->id }}" hidden>{{ $subject->class->class_code }}</option>
                                     @foreach ($classes as $class) 
                                         <option value="{{ $class->id }}">{{ $class->class_code}}</option>
                                     @endforeach

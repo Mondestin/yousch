@@ -10,7 +10,7 @@
  
 @endsection
 @section('content')
-    <div class="p-3 bg-body rounded shadow-sm">
+    <div class="p-3 bg-body rounded">
         <div class="container-fluid">
             <div class="card card-outline card-purple">
 
@@ -30,6 +30,7 @@
                                     <th scope="col">Nom de la matière</th>
                                     <th scope="col">Semestre</th>
                                     <th scope="col">UE</th>
+                                    <th scope="col">Code de la classe</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -37,22 +38,19 @@
                                 @foreach ($subjects as $subject)
                                 <tr>
                                     <th scope="row">{{ $loop->index + 1 }}</th>
+                                    <td>{{ $subject->subject_code }}</td>
                                     <td>{{ $subject->subject_name }}</td>
                                     <td>{{ $subject->semester ? 'Semestre 1' : 'Semestre 2' }}</td>
-                                    <td>{{ $subject->subject_code }}</td>
                                     <td>{{ $subject->unit->unit_code }}</td>
+                                    <td>{{ $subject->class->class_code }}</td>
                                     <td>
                                         <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST">
-                                            <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-pen" ></i></a>
-                                            {{-- <a href="#" class="btn btn-warning">update</a> --}}
-
+                                            <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-warning text-white btn-sm">
+                                                <i class="fa fa-pen" ></i></a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer')"><i class="fa fa-trash" style="color: #fff;"></i></button>
-                                            {{-- <a href="#" class="btn btn-danger btn-sm" title="Supprimer">
-                                                <i class="fa fa-trash" style="color: #fff;"></i>
-                                            </a> --}}
-                                            {{-- <a href="#" class="btn btn-danger">Delete</a> --}}
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer')">
+                                                <i class="fa fa-trash" style="color: #fff;"></i></button>
                                         </form>
                                     </td>
                                 </tr>

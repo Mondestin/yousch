@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Models\Unit;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Classe;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subject extends Model
 {
@@ -29,11 +30,11 @@ class Subject extends Model
     {
         return $this->belongsTo(Unit::class);
     }
-    
+ 
     /**
      * Get the unit that owns the subject.
      */
-    public function classe()
+    public function class()
     {
         return $this->belongsTo(Classe::class);
     }
