@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Subject;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -25,7 +27,6 @@ class SubjectsController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-
         return view('subjects.index', compact('subjects'));
     }
 
@@ -36,7 +37,10 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        return view('subjects.create');
+        $units = Unit::all();
+        $classes = Classe::all();
+
+        return view('subjects.create', compact('units','classes'));
     }
 
     /**
@@ -51,7 +55,8 @@ class SubjectsController extends Controller
             'subject_name' => 'required',
             'subject_code' => 'required',
             'semester' => 'required',
-            'class_id' => 'nullable',
+            'class_id' => 'required',
+            'unit_id' => 'required',
         ]);
 
         Subject::create($request->all());
@@ -79,7 +84,9 @@ class SubjectsController extends Controller
      */
     public function edit(Subject $subject)
     {
-        return view('subjects.edit', compact('subject'));
+        $units = Unit::all();
+        $classes = Classe::all();
+        return view('subjects.edit', compact('subject', 'units','classes'));
     }
 
     /**
@@ -95,7 +102,8 @@ class SubjectsController extends Controller
             'subject_name' => 'required',
             'subject_code' => 'required',
             'semester' => 'required',
-            'class_id' => 'nullable',
+            'class_id' => 'required',
+            'unit_id' => 'required',
         ]);
 
         $subject->update($request->all());

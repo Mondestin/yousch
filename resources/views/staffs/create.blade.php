@@ -1,4 +1,12 @@
 @extends('layouts.app')
+<<<<<<< HEAD
+=======
+@section('content')
+
+@section('styles')
+
+@endsection
+>>>>>>> 9cb96013d8302aa6a1cbb2d43b3e10eb3869eac7
 
 @section('content-header')
      <div class="container-fluid">

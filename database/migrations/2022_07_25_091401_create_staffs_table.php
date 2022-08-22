@@ -14,15 +14,6 @@ return new class extends Migration {
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-            $table->string('staff_name', 50);
-            $table->string('staff_surname', 50);
-            $table->string('staff_phone', 50)->nullable();
-            $table->string('staff_email', 50);
-            $table->string('staff_avatar')->nullable();
-            $table->string('staff_adress')->nullable();
-            $table->string('staff_code')->nullable();
-=======
             $table->string('avatar');
             $table->string('staff_code');
             $table->string('staff_name');
@@ -36,7 +27,6 @@ return new class extends Migration {
             $table->string('staff_postal');
             $table->string('staff_sexe');
             $table->string('staff_country');
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
             $table->timestamps();
         });
     }

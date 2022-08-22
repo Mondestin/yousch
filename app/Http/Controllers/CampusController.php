@@ -86,7 +86,6 @@ class CampusController extends Controller
     public function edit(Campus $campus)
     {
         $staffs = Staff::all();
-
         return view('campus.edit', compact('campus', 'staffs'));
     }
 

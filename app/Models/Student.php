@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Assiduite;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'avatar',
         'student_code',
@@ -30,6 +32,11 @@ class Student extends Model
      */
     public function campus()
     {
-        return $this->belongsTo(Campus::class);
+        return $this->hasOne(Campus::class);
+    }
+
+    public function assiduite()
+    {
+        return $this->belongsToMany(Assiduite::class);
     }
 }

@@ -36,7 +36,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return datatables()->of(Student::select('*'))
+            return datatables()->of(Student::all())
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
                 return '
@@ -93,7 +93,6 @@ class StudentController extends Controller
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/students/' . $filename));
         } else {
             $filename="user.png";
-
         }
                   
         // GET DATA FROM THE FORM
@@ -128,7 +127,8 @@ class StudentController extends Controller
         $user = array(
                 'type' => "Student",
                 'email'=>$request->student_email,
-                'password'=>$password);
+                'password'=>$password
+            );
 
         $mail_data=array(
                 'name' => $request->student_name." ".$request->student_surname,
@@ -140,14 +140,13 @@ class StudentController extends Controller
          \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
-        $newuser->roles()->attach([1 => 1]);
+        $newuser->roles()->attach([2 => 2]);
         // save new Student
         $new_student = Student::create($form);
         return redirect()->route('students.index')->with(
             'success',
             'Etudiant ajouté avec succès'
         );
-
     }
 
     /**
@@ -257,8 +256,6 @@ class StudentController extends Controller
     
     public function updateUser(Request $request, $id)
     {
-
-
         $user_form=array(); 
 
         //check if the user want to change the password
@@ -282,7 +279,6 @@ class StudentController extends Controller
                                         'Utilisateur a été actualisé avec succès');
             }
              else {
-
                 return redirect()->back()->with(
                     'error',
                     'le mot de passe actuel est incorrect'
@@ -294,32 +290,33 @@ class StudentController extends Controller
     //restore user password
     public function restore(Request $request, $id)
     {
-        // generate a random new password for the user
-        $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
-        $pass = array();
-        $combLen = strlen($comb) - 1;
-        for ($i = 0; $i < 8; $i++) {
-            $n = rand(0, $combLen);
-            $pass[] = $comb[$n];
-        }
-        $passw=implode($pass);
-        $password= Hash::make($passw);
+        // // generate a random new password for the user
+        // $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+        // $pass = array();
+        // $combLen = strlen($comb) - 1;
+        // for ($i = 0; $i < 8; $i++) {
+        //     $n = rand(0, $combLen);
+        //     $pass[] = $comb[$n];
+        // }
+        // $passw=implode($pass);
+        // $password= Hash::make($passw);
 
-        //find the user info
-        $data=User::findOrFail($id);
+        // //find the user info
+        // $data=User::findOrFail($id);
 
-        $user = array('name'=>$data->name,
-                'email'=>$data->email,
-                'pass'=>$passw);
-        $usermail=$data->email;
-        // send maill of the new password to the user
-        //    \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
-        //  update the new password to
-        User::whereId($id)->update(['password' => $password]);
+        // $user = array('name'=>$data->name,
+        //         'email'=>$data->email,
+        //         'pass'=>$passw);
+        // $usermail=$data->email;
+        // // send maill of the new password to the user
+        // //    \Mail::to($usermail)->send(new \App\Mail\Resetpassword($user));
+        // //  update the new password to
+        // User::whereId($id)->update(['password' => $password]);
   
-        return redirect()->route('users.index')->with(
-            'success',
-            'le mot de password a été réinitialié avec succès'
-        );
+        // return redirect()->route('users.index')->with(
+        //     'success',
+        //     'le mot de password a été réinitialié avec succès'
+        // );
+        dd('need to be done');
     }
 }

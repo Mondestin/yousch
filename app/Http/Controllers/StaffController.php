@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Mail;
@@ -47,8 +48,6 @@ class StaffController extends Controller
      */
     public function create()
     {
-
-
         # on génére le code automatiquement qu'on envoit à la vue
         $code_gen = "STA" . (date('Y') - 1800) . "" . rand(1000, 9999);
         return view('staffs.create', compact("code_gen"));
@@ -89,29 +88,35 @@ class StaffController extends Controller
             'staff_email' =>  ['required', 'string', 'email', 'max:255']
         ]);
 
-          // generate a random new password for the user
-         $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
-         $pass = array(); 
-         $combLen = strlen($comb) - 1; 
-         for ($i = 0; $i < 8; $i++) {
-             $n = rand(0, $combLen);
-             $pass[] = $comb[$n];
-         }
-          $passw=implode($pass);
-          $password= Hash::make($passw);
+        // generate a random new password for the user
+        $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
+        $pass = array();
+        $combLen = strlen($comb) - 1;
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $combLen);
+            $pass[] = $comb[$n];
+        }
+        $passw=implode($pass);
+        $password= Hash::make($passw);
 
-          $user = array(
+        $user = array(
                 'type' => "Staff",
                 'email'=>$request->staff_email,
-                'password'=>$passw);
- 
-            $usermail=$request->staff_email;
-          // send maill of the new password to the user
-          \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
+                'password'=>$password);
+        
+              
+        $mail_data=array(
+            'name' => $request->staff_name." ".$request->staff_surname,
+            'email'=>$request->staff_email,
+            'password'=>$passw);
+
+        $usermail=$request->staff_email;
+        // send maill of the new password to the user
+         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
-            $newuser=User::create($user);
-            //add role staff to the user
-            $newuser->roles()->attach([2 => 2]);
+        $newuser= User::create($user);
+        $newuser->roles()->attach([1 => 1]);
+        Staff::create($request->all());
 
         return redirect()->route('staffs.index')
             ->with('success', 'Staff créé avec succès.');
@@ -136,7 +141,10 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        return view('staffs.edit', compact('staff'));
+
+ 
+        $staffs = Staff::all();
+        return view('staffs.edit', compact('staff', 'staffs'));
     }
 
     /**

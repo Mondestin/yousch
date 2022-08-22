@@ -31,6 +31,11 @@
                       <th>#</th>
                     <th>Type</th>
                     <th>Email</th>
+<<<<<<< HEAD
+=======
+                    <th>Role</th>
+                    <th>Dernière connexion</th>
+>>>>>>> 9cb96013d8302aa6a1cbb2d43b3e10eb3869eac7
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -57,6 +62,11 @@ columns: [
 {data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
 { data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
+<<<<<<< HEAD
+=======
+{ data: 'get_role', name: 'name' },
+{ data: 'created_at', name: 'created_at' },
+>>>>>>> 9cb96013d8302aa6a1cbb2d43b3e10eb3869eac7
 {data: 'action', name: 'action', orderable: false},
 ],
 order: [[0, 'desc']]

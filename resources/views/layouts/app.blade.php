@@ -63,7 +63,7 @@
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-          <section class="content-header">
+          <section class="content-header pl-4">
              @yield('content-header')
            </section>
           <!-- Main content -->

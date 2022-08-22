@@ -28,8 +28,4 @@ class Staff extends Model
         'staff_country'
     ];
 
-    // public function campus()
-    // {
-    //     return $this->hasOne(Campus::class);
-    // }
 }
