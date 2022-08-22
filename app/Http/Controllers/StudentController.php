@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
 use App\Models\Role;
-<<<<<<< HEAD
-=======
 
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
 class StudentController extends Controller
 {
     /**
@@ -83,21 +80,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $this->checkForm($request);
-<<<<<<< HEAD
-        $code="EST".(date('Y')-1800)."".rand(1000,9999);
 
-        //if the user has a avatar to upload
-        if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');         
-
-            $filename = $code.rand(100000,999999) . '.' . $avatar->getClientOriginalExtension();
-
-            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/students/' . $filename ) );
-            
-        }
-        else{
-                $filename="user.png";
-=======
         $code="EST".(date('Y')-1800)."".rand(1000, 9999);
 
         //if the user has a avatar to upload
@@ -110,7 +93,7 @@ class StudentController extends Controller
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/students/' . $filename));
         } else {
             $filename="user.png";
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
+
         }
                   
         // GET DATA FROM THE FORM
@@ -152,22 +135,9 @@ class StudentController extends Controller
                 'email'=>$request->student_email,
                 'password'=>$passw);
 
-<<<<<<< HEAD
-            $usermail=$request->student_email;
-          // send maill of the new password to the user
-            // \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
-        //  create the new user
-             $newuser=User::create($user);
-             $newuser->roles()->attach([1 => 1]);
-                // save new Student
-            $new_student = Student::create($form);
-            return redirect()->route('students.index')->with(
-                    'success',
-                    'Etudiant ajouté avec succès');
-=======
         $usermail=$request->student_email;
         // send maill of the new password to the user
-        // \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
+         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
         $newuser->roles()->attach([1 => 1]);
@@ -177,7 +147,7 @@ class StudentController extends Controller
             'success',
             'Etudiant ajouté avec succès'
         );
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
+
     }
 
     /**
@@ -287,12 +257,10 @@ class StudentController extends Controller
     
     public function updateUser(Request $request, $id)
     {
-<<<<<<< HEAD
+
 
         $user_form=array(); 
-=======
-        $user_form=array();
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
+
         //check if the user want to change the password
         if ($request->password !=null || $request->password_actuel != null || $request->password_confirmation != null) {
             $hashedPassword=Auth::user()->getAuthPassword();
@@ -302,7 +270,7 @@ class StudentController extends Controller
                 $request->validate([
                         'password' => ['required', 'string', 'min:8', 'confirmed'],
                     ]);
-<<<<<<< HEAD
+
                         //add the password in the array of the form
                         $user_form['password']=Hash::make($request->password);
 
@@ -313,20 +281,8 @@ class StudentController extends Controller
                                         'success',
                                         'Utilisateur a été actualisé avec succès');
             }
-            else {
-=======
-                //add the password in the array of the form
-                $user_form['password']=Hash::make($request->password);
-                
-                // dd($user_form);
-                // update the user info
-                $data=User::whereId($id)->update($user_form);
-                return redirect()->route('users.index')->with(
-                    'success',
-                    'Utilisateur a été actualisé avec succès'
-                );
-            } else {
->>>>>>> b12ca21f5cef66280b75f28081d5a31cd7f03c7d
+             else {
+
                 return redirect()->back()->with(
                     'error',
                     'le mot de passe actuel est incorrect'

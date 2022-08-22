@@ -23,7 +23,7 @@ class PlanningsController extends Controller
      */
     public function index()
     {
-        //
+       return view('classes.index');
     }
 
     /**

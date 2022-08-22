@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('styles')
+ <!-- fullCalendar -->
+  <link rel="stylesheet" href="../plugins/fullcalendar/main.css">
 @include('layouts.datatablestyles')
 		<!-- Jquery confirm css -->
 		<link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css')}}">
@@ -8,7 +10,7 @@
      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-md-6">
-          <h1 class="text-black">Etudiants</h1>
+          <h1 class="text-black">Plannings</h1>
           </div>
         </div>
       </div>
@@ -52,31 +54,5 @@
 <script src="{{asset('dist/js/delete-confirm.js')}} "></script>
 	<!-- Jquery confirm js -->
 	<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js')}}"></script>
-<script type="text/javascript">
-$(document).ready( function () {
-$.ajaxSetup({
-headers: {
-'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-}
-});
-$('#datatable').DataTable({
-processing: true,
-serverSide: true,
-ajax: "{{ url('students') }}",
-columns: [
-{data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
-{ data: 'student_code', name: 'student_code' },
-{ data: 'student_surname', name: 'student_surname' },
-{ data: 'student_name', name: 'student_name' },
-{ data: 'student_email', name: 'student_email' },
-{ data: 'student_dob', name: 'student_dob' },
-{ data: 'student_pob', name: 'student_pob' },
-{ data: 'student_phone', name: 'student_phone' },
-{ data: 'campus_id', name: 'campus_id' },
-{data: 'action', name: 'action', orderable: false},
-],
-order: [[0, 'desc']]
-});
-});
-</script>
+
 @endsection

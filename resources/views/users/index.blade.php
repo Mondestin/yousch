@@ -31,7 +31,6 @@
                       <th>#</th>
                     <th>Type</th>
                     <th>Email</th>
-                    <th>Dernière connexion</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -58,7 +57,6 @@ columns: [
 {data : 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable:false },
 { data: 'type', name: 'Type' },
 { data: 'email', name: 'email' },
-{ data: 'created_at', name: 'created_at' },
 {data: 'action', name: 'action', orderable: false},
 ],
 order: [[0, 'desc']]
