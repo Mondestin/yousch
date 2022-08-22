@@ -28,6 +28,7 @@ return new class extends Migration {
             $table->string('student_sexe');
             $table->string('student_country');
             $table->foreignId('campus_id')->references('id')->on('campus');
+
             $table->timestamps();
         });
     }

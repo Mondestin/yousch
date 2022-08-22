@@ -38,7 +38,6 @@
                     <th>Date de Naissance</th>
                     <th>Lieu de Naissance</th>
                     <th>Téléphone</th>
-                    <th>Campus</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -73,7 +72,6 @@ columns: [
 { data: 'student_dob', name: 'student_dob' },
 { data: 'student_pob', name: 'student_pob' },
 { data: 'student_phone', name: 'student_phone' },
-{ data: 'campus_name', name: 'campus_name' },
 {data: 'action', name: 'action', orderable: false},
 ],
 order: [[0, 'desc']]

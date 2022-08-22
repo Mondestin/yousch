@@ -7,7 +7,6 @@
           </div>
         </div>
       </div>
- 
 @endsection
 @section('content')
     <div class="my-3 p-3 bg-body rounded shadow-sm">

@@ -105,37 +105,20 @@ class StaffController extends Controller
         $user = array(
                 'type' => "Staff",
                 'email'=>$request->staff_email,
-                'password'=>$passw);
- 
+                'password'=>$password);
+        
+              
+        $mail_data=array(
+            'name' => $request->staff_name." ".$request->staff_surname,
+            'email'=>$request->staff_email,
+            'password'=>$passw);
+
         $usermail=$request->staff_email;
         // send maill of the new password to the user
-        \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
+         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
-        $newuser=User::create($user);
-        //add role staff to the user
-        $newuser->roles()->attach([2 => 2]);
-
-        // generate a random new password for the user
-        $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#&@!$';
-        $pass = array();
-        $combLen = strlen($comb) - 1;
-        for ($i = 0; $i < 8; $i++) {
-            $n = rand(0, $combLen);
-            $pass[] = $comb[$n];
-        }
-        $passw=implode($pass);
-        $password= Hash::make($passw);
-
-        $user = array(
-                'type' => "Staff",
-                'email'=>$request->staff_email,
-                'password'=>$passw);
- 
-        $usermail=$request->staff_email;
-        // send maill of the new password to the user
-        \Mail::to($usermail)->send(new \App\Mail\Newuser($user));
-        //  create the new user
-        User::create($user);
+        $newuser= User::create($user);
+        $newuser->roles()->attach([1 => 1]);
         Staff::create($request->all());
 
         return redirect()->route('staffs.index')

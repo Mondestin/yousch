@@ -36,13 +36,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return datatables()->of(Student::whereHas('campus')
-            ->get()
-            ->transform(function ($item) {
-                 $item->campus_name = $item->campus->pluck('campus_name');
-                 return $item;
-             })
-            ->all())
+            return datatables()->of(Student::all())
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
                 return '
@@ -133,7 +127,8 @@ class StudentController extends Controller
         $user = array(
                 'type' => "Student",
                 'email'=>$request->student_email,
-                'password'=>$password);
+                'password'=>$password
+            );
 
         $mail_data=array(
                 'name' => $request->student_name." ".$request->student_surname,
@@ -143,10 +138,10 @@ class StudentController extends Controller
 
         $usermail=$request->student_email;
         // send maill of the new password to the user
-        // \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
+         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
-        $newuser->roles()->attach([1 => 1]);
+        $newuser->roles()->attach([2 => 2]);
         // save new Student
         $new_student = Student::create($form);
         return redirect()->route('students.index')->with(

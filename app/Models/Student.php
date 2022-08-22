@@ -32,7 +32,7 @@ class Student extends Model
      */
     public function campus()
     {
-        return $this->belongsTo(Campus::class);
+        return $this->hasOne(Campus::class);
     }
 
     public function assiduite()
