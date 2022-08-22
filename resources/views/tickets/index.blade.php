@@ -1,23 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<<<<<<< HEAD
-=======
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Tickets</h3>
-        
-        <div class="container-fluid mt-5">
-
->>>>>>> 9cb96013d8302aa6a1cbb2d43b3e10eb3869eac7
+    <div class="my-3 p-3 bg-body rounded">
         <div class="container-fluid mt-3">
             <div class="card card-outline card-purple">
                 <div class="card-header">
                     <h3 class="card-title">Liste des tickets</h3>
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 9cb96013d8302aa6a1cbb2d43b3e10eb3869eac7
                     <a class="btn btn-success float-right mr-4" href="{{ route('tickets.create') }}"><i class="fa fa-plus"></i> Nouveau ticket</a>
                 </div>
             

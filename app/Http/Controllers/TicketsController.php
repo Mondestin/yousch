@@ -34,7 +34,7 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        //
+        return view('tickets.create');
     }
 
     /**
@@ -45,7 +45,12 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+        'object' => 'required',
+        'service' =>  'required',
+        'message_body' =>  'required',
+        ]);
+        return view('tickets.index');
     }
 
     /**
