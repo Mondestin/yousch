@@ -24,12 +24,12 @@
                         @csrf
                         <div class="form-row col-md-12 mb-2">
                             <label for="user">Demandeur</label>
-                             <input type="text" class="form-control" name="user" value="{{ Auth::user()->email }}" required readonly>
+                             <input type="text" class="form-control" name="user_one" value="{{ Auth::user()->email }}" readonly>
                         </div>
                         <div class="form-row mb-2">
                             <div class="col-md-12">
                                 <label for="object">Objet</label>
-                                <input type="text" class="form-control @error('object') is-invalid @enderror" name="object" required>
+                                <input type="text" class="form-control @error('object') is-invalid @enderror" name="object">
                             </div>
                         </div>
                         <div class="form-row mb-2">
@@ -37,10 +37,10 @@
                                 <label for="service">Service à contacter</label>
                                 <select name="service" class="form-control @error('service') is-invalid @enderror">
                                   <option hidden="" value="">...</option>
-                                  <option value="ESTIAM">ESTIAM - Admissions</option>
-                                  <option value="ESTIAM">ESTIAM - Campus Paris</option>
-                                  <option value="ESTIAM">ESTIAM - Problème outils MyEstiam</option>
-                                  <option value="ESTIAM">ESTIAM - Relations entreprises</option>
+                                  <option value="ESTIAM - Admissions">ESTIAM - Admissions</option>
+                                  <option value="ESTIAM - Campus Paris">ESTIAM - Campus Paris</option>
+                                  <option value="ESTIAM - Problème outils MyEstiam">ESTIAM - Problème outils MyEstiam</option>
+                                  <option value="ESTIAM - Relations entreprises">ESTIAM - Relations entreprises</option>
                                   <option value="Groupe-IT">Groupe-IT</option>
                                 </select>
                             </div>
@@ -49,7 +49,7 @@
                         <div class="form-row mb-3">
                             <div class="col-md-12">
                                 <label for="location">Description</label>
-                                <textarea type="text" class="form-control @error('message_body') is-invalid @enderror" name="message_body" cols="14" rows="8" required></textarea>
+                                <textarea type="text" class="form-control @error('message_body') is-invalid @enderror" name="message_body" cols="14" rows="8"></textarea>
                             </div>
                         </div>
                         <div class="mb-2">

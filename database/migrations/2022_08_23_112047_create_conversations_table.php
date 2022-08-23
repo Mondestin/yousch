@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_one');
+            $table->bigInteger('user_two');
+            $table->string('conversation_subject');
+            $table->time('send_time');
+            $table->boolean('is_read');
+            $table->string('service');
+            $table->boolean('is_closed');
             $table->timestamps();
         });
     }

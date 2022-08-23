@@ -28,6 +28,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Unité d'enseignement</th>
                                     <th scope="col">Code de l'unité</th>
+                                    <th scope="col">Parcours</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -37,6 +38,7 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $unit->unit_name }}</td>
                                     <td>{{ $unit->unit_code }}</td>
+                                    <td>{{ $unit->course->course_code }}</td>
                                     <td>
                                         <form action="{{ route('units.destroy', $unit->id) }}" method="POST">
                                             <a href="{{ route('units.show', $unit->id) }}" class="btn btn-success btn-sm"><i class="fa fa-eye" ></i></a>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
@@ -45,12 +47,37 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
+        // validate the data
          $request->validate([
         'object' => 'required',
         'service' =>  'required',
         'message_body' =>  'required',
         ]);
-        return view('tickets.index');
+        
+        // get data for a new conversation
+       $new_conversation = array(
+        'user_one'=>  $request->user_one,
+        'conversation_subject'=>  $request->object,
+        'send_time'=>  Now()->format('H:i:s'),
+        'is_read'=>  0,
+        'service'=>  $request->service,
+        'is_closed'=>  0,
+        );
+        // create a new conversation
+        $new_con=Conversation::create($new_conversation);
+
+        // get data for a new message
+        $new_message = array(
+            'conversation_id'=>   $new_con->id,
+            'message_body'=>  $request->message_body,
+            'me_send_time'=>  Now()->format('H:i:s'),
+            );
+        // create a new message
+        Message::create($new_message);
+
+        return redirect()->route('tickets.index')->with(
+            'success',
+            'Ticket crée avec succès');
     }
 
     /**

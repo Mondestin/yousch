@@ -27,6 +27,7 @@ class UnitsController extends Controller
     {
         $units = Unit::all();
 
+        
         return view('units.index', compact('units'));
         // return view('units.index');
     }
