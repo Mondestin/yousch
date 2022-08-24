@@ -26,7 +26,8 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        return view('tickets.index');
+          $tickets=Conversation::all();
+        return view('tickets.index', compact('tickets'));
     }
 
     /**
@@ -99,7 +100,11 @@ class TicketsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // get all tickets
+        $ticket=Conversation::find($id);
+        // get send information
+
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**

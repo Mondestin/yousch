@@ -24,7 +24,9 @@
                         @csrf
                         <div class="form-row col-md-12 mb-2">
                             <label for="user">Demandeur</label>
-                             <input type="text" class="form-control" name="user_one" value="{{ Auth::user()->email }}" readonly>
+                             <select type="text" class="form-control" name="user_one"  readonly>
+                                <option value="{{ Auth::user()->id }}">{{ Auth::user()->email }}</option>
+                              </select>
                         </div>
                         <div class="form-row mb-2">
                             <div class="col-md-12">
