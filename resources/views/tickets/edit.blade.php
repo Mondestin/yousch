@@ -18,8 +18,8 @@
             
             <div class="direct-chat-msg">
                 <div class="direct-chat-infos clearfix">
-                  <span class="direct-chat-name float-left">Alexander Pierce</span>
-                  <span class="direct-chat-timestamp float-right"><p>{{ $message->created_at->format('H:i:s') }}</p></span>
+                  <span class="direct-chat-name float-left">{{ $message->user->email}}</span>
+                  <span class="direct-chat-timestamp float-right"><p>{{ $message->created_at->diffForHumans()}}</p></span>
                 </div>
                 <!-- /.direct-chat-infos -->
                 <img class="direct-chat-img" src="{{asset('img/user.png')}}" alt="Message User Image">
@@ -38,13 +38,15 @@
      
         <!-- /.card-footer -->
         <div class="card-footer d-flex justify-content-center align-center">
-            <form action="" method="post">
+            <form action="{{ route('reply') }}" method="post">
+                @csrf
+                <input type="number" name="conversation_id" class="d-none" value="{{ $ticket->id }}">
                 <div class="row ">
-                    <textarea name="message_body" cols="110" rows="3" required></textarea>
+                    <textarea name="message_body" cols="80" rows="3" required></textarea>
                 </div>
                 <div class="mt-3">
                     <button type="submit" class="btn btn-success col-md-6"> Repondre <i class="fa fa-paper-plane"></i></button>
-                    <a href="#" class="btn btn-primary col-md-4 m-2"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+                    <a href="{{ route('tickets.index') }}" class="btn btn-primary col-md-4 m-2"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                 </div>
             </form>
         </div>
@@ -57,15 +59,12 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Détails du ticket</h3>
-
-
           </div>
           <div class="row card-body p-3">
             <div class="col-md-12">
                 <h4 class="">Etat:</h4> 
                 <p class="">Etat</p>
             </div>
-
             <div class="col-md-8">
                 <label for="service">Service à contacter</label>
                 <select name="service" class="form-control @error('service') is-invalid @enderror">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Message;
 use App\Models\Role;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +49,10 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
     }
 }

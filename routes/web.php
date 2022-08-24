@@ -62,6 +62,8 @@ Route::resource('plannings', PlanningsController::class);
 
 //Tickets ROUTES
 Route::resource('tickets', TicketsController::class);
+Route::post('reply/tickets/', [App\Http\Controllers\TicketsController::class, 'reply'])->name('reply');
+
 
 //Marks ROUTES
 Route::resource('marks', MarksController::class);

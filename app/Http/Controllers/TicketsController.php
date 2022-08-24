@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TicketsController extends Controller
 {
       /**
@@ -50,19 +50,19 @@ class TicketsController extends Controller
     {
         // validate the data
          $request->validate([
-        'object' => 'required',
-        'service' =>  'required',
-        'message_body' =>  'required',
+            'object' => 'required',
+            'service' =>  'required',
+            'message_body' =>  'required',
         ]);
         
         // get data for a new conversation
        $new_conversation = array(
-        'user_one'=>  $request->user_one,
-        'conversation_subject'=>  $request->object,
-        'send_time'=>  Now()->format('H:i:s'),
-        'is_read'=>  0,
-        'service'=>  $request->service,
-        'is_closed'=>  0,
+            'user_one'=>  $request->user_one,
+            'conversation_subject'=>  $request->object,
+            'send_time'=>  Now()->format('H:i:s'),
+            'is_read'=>  0,
+            'service'=>  $request->service,
+            'is_closed'=>  0,
         );
         // create a new conversation
         $new_con=Conversation::create($new_conversation);
@@ -70,6 +70,7 @@ class TicketsController extends Controller
         // get data for a new message
         $new_message = array(
             'conversation_id'=>   $new_con->id,
+            'user_id'=>   $request->user_one,
             'message_body'=>  $request->message_body,
             'me_send_time'=>  Now()->format('H:i:s'),
             );
@@ -80,7 +81,29 @@ class TicketsController extends Controller
             'success',
             'Ticket crée avec succès');
     }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reply(Request $request)
+    {
+        
+        // get data for a new message
+        $new_message = array(
+            'conversation_id'=> $request->conversation_id,
+            'user_id'=>   Auth::user()->id,
+            'message_body'=>  $request->message_body,
+            'me_send_time'=>  Now()->format('H:i:s'),
+        );
+        // create a new message
+        Message::create($new_message);
 
+        return redirect()->route('tickets.index')->with(
+            'success',
+            'Message envoyé avec succès');
+    }
     /**
      * Display the specified resource.
      *

@@ -11,16 +11,18 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('message_body');
             $table->time('me_send_time');
             $table->foreignId('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
