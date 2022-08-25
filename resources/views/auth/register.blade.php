@@ -51,7 +51,7 @@
 
                 <div class="row">
                     <!-- /.col -->
-                    <div class="col-4">
+                    <div class="col-8">
                         <button type="submit" class="btn btn-warning btn-block">Réinitialiser le mot de passe</button>
                     </div>
                     <div class="col-4">

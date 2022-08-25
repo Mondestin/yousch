@@ -56,30 +56,35 @@
     </div>
     <!-- /.col -->
     <div class="col-md-3">
-        <div class="card">
+        <div class="card card-primary card-outline">
           <div class="card-header">
             <h3 class="card-title">Détails du ticket</h3>
           </div>
-          <div class="row card-body p-3">
-            <div class="col-md-12">
-                <h4 class="">Etat:</h4> 
-                <p class="">Etat</p>
-            </div>
-            <div class="col-md-8">
-                <label for="service">Service à contacter</label>
-                <select name="service" class="form-control @error('service') is-invalid @enderror">
-                  <option hidden="" value="">...</option>
-                  <option value="ESTIAM - Admissions">ESTIAM - Admissions</option>
-                  <option value="ESTIAM - Campus Paris">ESTIAM - Campus Paris</option>
-                  <option value="ESTIAM - Problème outils MyEstiam">ESTIAM - Problème outils MyEstiam</option>
-                  <option value="ESTIAM - Relations entreprises">ESTIAM - Relations entreprises</option>
-                  <option value="Groupe-IT">Groupe-IT</option>
-                </select>
-            </div>
-            <a href="#" class="btn btn-success col-md-6 m-2"><i class="fa-solid fa-check"></i> Mettre à jour</a>
-           
-          </div>
-          <!-- /.card-body -->
+             <form action="{{ route('tickets.update',$ticket->id)}}" method="post">
+                @csrf
+                 @method('PATCH')
+                  <div class="row card-body p-3">
+                    <div class="col-md-12">
+                        <h4 class="">Etat:</h4> 
+                        <select name="is_done" class="form-control @error('is_done') is-invalid @enderror">
+                          <option value="0">En cours de traitement</option>
+                          <option value="1">Ticket fermé</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="service">Service à contacter</label>
+                        <select name="service" class="form-control @error('service') is-invalid @enderror">
+                          <option hidden="" value="{{ $ticket->service }}">{{ $ticket->service }}</option>
+                          <option value="ESTIAM - Admissions">ESTIAM - Admissions</option>
+                          <option value="ESTIAM - Campus Paris">ESTIAM - Campus Paris</option>
+                          <option value="ESTIAM - Problème outils MyEstiam">ESTIAM - Problème outils MyEstiam</option>
+                          <option value="ESTIAM - Relations entreprises">ESTIAM - Relations entreprises</option>
+                          <option value="Groupe-IT">Groupe-IT</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success col-md-6 m-2"><i class="fa-solid fa-check"></i> Mettre à jour</button>>
+                  </div>
+               </form>
         </div>
         <!-- /.card -->
       </div>

@@ -1,4 +1,17 @@
 @extends('layouts.app')
+@section('styles')
+<link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css')}}">
+@endsection
+@section('content-header')
+     <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-md-6">
+          <h1 class="text-black">Tickets</h1>
+          </div>
+        </div>
+      </div>
+ 
+@endsection
 @section('content')
     <div class="my-3 p-3 bg-body rounded">
         <div class="container-fluid mt-3 d-flex justify-content-center align-center">
@@ -19,7 +32,9 @@
                                 <p class="fs-4">Crée le {{$ticket->created_at->format('d-m-Y')}}<cite title="Source Title"> à {{$ticket->created_at->format('H:i:s')}}</cite></p>
                               </div>
                               <div class="col-md-4 text-right">
-                                <span class="badge badge-default mt-3 p-2 shadow" >En cours de traitement</span>
+                                <span class="badge badge-{{$ticket->is_closed ? 'success' : 'warning'}} mt-3 p-2" >
+                                {{$ticket->is_closed ? 'Ticket fermé' : 'En cours de traitement'}}
+                                </span>
                               </div>
                             </blockquote>
                             @endforeach

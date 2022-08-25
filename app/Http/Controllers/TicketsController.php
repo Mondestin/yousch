@@ -26,7 +26,17 @@ class TicketsController extends Controller
      */
     public function index()
     {
+        // init
+        $tickets="";
+        // get the current user id
+        $user_id= Auth::user()->id;
+        if (Auth::user()->type=="Student") {
+            // get students tickets
+            $tickets=Conversation::where('user_one', $user_id)->get();
+        }
+        else{
           $tickets=Conversation::all();
+        }
         return view('tickets.index', compact('tickets'));
     }
 
@@ -125,8 +135,10 @@ class TicketsController extends Controller
     {
         // get all tickets
         $ticket=Conversation::find($id);
-        // get send information
-
+        // update the is_read
+        if ($ticket->is_read==0) {
+            Conversation::whereId($id)->update(["is_read" => 1]);
+        }
         return view('tickets.edit', compact('ticket'));
     }
 
@@ -139,7 +151,16 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            // get data for a new conversation
+       $update_conversation = array(
+            'service'=>  $request->service,
+            'is_closed'=>  1,
+        );
+         Conversation::whereId($id)->update($update_conversation);
+        
+        return redirect()->route('tickets.index')->with(
+            'success',
+            'Ticket modifié avec succès');
     }
 
     /**
