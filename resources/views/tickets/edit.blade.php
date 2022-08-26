@@ -82,7 +82,7 @@
                           <option value="Groupe-IT">Groupe-IT</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-success col-md-6 m-2"><i class="fa-solid fa-check"></i> Mettre à jour</button>>
+                    <button type="submit" class="btn btn-success col-md-6 m-2"><i class="fa-solid fa-check"></i> Mettre à jour</button>
                   </div>
                </form>
         </div>

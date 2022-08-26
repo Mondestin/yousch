@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Unit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
     use HasFactory;
 
-    protected $table = 'Courses';
+    protected $table = 'courses';
 
     protected $fillable = [
         'course_name',
@@ -17,4 +18,8 @@ class Course extends Model
     ];
 
     // un parcours ne peut appartenir qu'à une seule unité d'enseignement
+    public function unit()
+    {
+        return $this->hasMany(Unit::class);
+    }
 }

@@ -21,4 +21,9 @@ class Classe extends Model
     {
         return $this->hasOne(Subject::class);
     }
+    
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

@@ -102,7 +102,8 @@ class StaffController extends Controller
         $user = array(
                 'type' => "Staff",
                 'email'=>$request->staff_email,
-                'password'=>$password);
+                'password'=>$password,
+            );
         
               
         $mail_data=array(
@@ -116,6 +117,7 @@ class StaffController extends Controller
         //  create the new user
         $newuser= User::create($user);
         $newuser->roles()->attach([1 => 1]);
+        $token=$newuser->createToken('staff_token')->plainTextToken;
         Staff::create($request->all());
 
         return redirect()->route('staffs.index')

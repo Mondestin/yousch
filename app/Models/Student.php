@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Campus;
+use App\Models\Classe;
 use App\Models\Assiduite;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -25,6 +27,7 @@ class Student extends Model
         'student_sexe',
         'student_country',
         'campus_id',
+        'class_id',
     ];
 
     /**
@@ -34,6 +37,14 @@ class Student extends Model
     {
         return $this->hasOne(Campus::class);
     }
+    /**
+     * Get the campus that owns the student.
+     */
+    public function class()
+    {
+        return $this->hasOne(Classe::class);
+    }
+
 
     public function assiduite()
     {

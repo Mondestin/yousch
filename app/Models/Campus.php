@@ -33,4 +33,5 @@ class Campus extends Model
     {
         return $this->belongsTo(Student::class);
     }
+   
 }

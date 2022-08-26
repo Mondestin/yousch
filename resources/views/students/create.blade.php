@@ -355,7 +355,7 @@
         </div>
 
         <div class="row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
             <label for="Name">Email</label>
             <span class="red">*</span>
             <input type="email" class="form-control  @error('student_email') is-invalid @enderror" name="student_email"  value="{{ old('student_email') }}">
@@ -381,6 +381,16 @@
                   @endforeach
               </select>
             </div>
+            <div class="form-group col-md-3">
+              <label for="inputState">Classe</label>
+              <select id="inputState" class="form-control" name="class_id">
+                  <option selected>Choisir...</option>
+                  @foreach ($classes as $class) 
+                      <option value="{{ $class->id }}">{{ $class->class_name}}</option>
+                  @endforeach
+              </select>
+            </div>
+
           </div>  
         </div>  
                

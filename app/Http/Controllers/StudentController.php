@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
-use App\Models\Campus;
-use Illuminate\Http\Request;
 use Auth;
 use Mail;
 use Image;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\Campus;
+use App\Models\Classe;
+use App\Models\Student;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Arr;
-use App\Models\Role;
 
 class StudentController extends Controller
 {
@@ -67,8 +69,8 @@ class StudentController extends Controller
     {
         # on aura besoin d'attribuer un campus à chaque etudiant
         $campus = Campus::all();
-
-        return view('students.create', compact('campus'));
+        $classes= Classe::all();
+        return view('students.create', compact('campus','classes'));
     }
 
     /**
@@ -111,6 +113,7 @@ class StudentController extends Controller
             'student_ville'=>  $request->student_ville,
             'student_postal'=>  $request->student_postal,
             'campus_id' => $request->campus_id,
+            'class_id' => $request->class_id,
             );
 
         // generate a random new password for the user
@@ -127,7 +130,8 @@ class StudentController extends Controller
         $user = array(
                 'type' => "Student",
                 'email'=>$request->student_email,
-                'password'=>$password
+                'password'=>$password,
+                'api_token' => Str::random(100)
             );
 
         $mail_data=array(
@@ -140,7 +144,10 @@ class StudentController extends Controller
          \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
+        // attached roles to the users
         $newuser->roles()->attach([2 => 2]);
+        // create access token
+       $token=$newuser->createToken('user_token')->plainTextToken;
         // save new Student
         $new_student = Student::create($form);
         return redirect()->route('students.index')->with(
@@ -210,6 +217,7 @@ class StudentController extends Controller
             'student_ville'=>  $request->student_ville,
             'student_postal'=>  $request->student_postal,
             'campus_id' => $request->campus_id,
+            'class_id' => $request->class_id,
             );
         //update Student
         Student::whereId($id)->update($form);
