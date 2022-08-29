@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 class ApiUserController extends Controller
 {
     /**
@@ -25,8 +26,19 @@ class ApiUserController extends Controller
      */
     public function store(Request $request)
     {
-        $user=User::where('email', 'like', '%'.$request->email.'%')->first();
-        return  $user->toJson(JSON_PRETTY_PRINT);
+        if (auth()->guard('web')->attempt(['email' => $request->input('email'),'password' => $request->input('password')])) {
+            
+            $user= User::where('email', 'like', '%'.$request->input('email').'%')->first();
+              
+              return response()->json([
+                'success' => true,
+                'user_email' => $user->email
+             ]);
+         }
+         return response()->json([
+                'success' => false,
+                'message' => 'Email ou mot de passe invalides',
+          ], 401); 
     }
 
     /**
@@ -35,9 +47,18 @@ class ApiUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return User::find($user)->toJson(JSON_PRETTY_PRINT);
+        $user= User::whereId($id)->first();
+          
+        $user_a=array(
+            'email'=>  $user->email,
+            'type'=>  $user->type,
+            );
+          return response()->json([
+            'success' => true,
+            'user_email' => $user->email
+        ]);
     }
 
     /**
