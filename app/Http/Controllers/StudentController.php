@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
 use App\Models\Classe;
+use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -49,7 +50,7 @@ class StudentController extends Controller
                     <i class="fa fa-pen" ></i>
                    </a>
                    
-                    <a href="students/'.$data->id.'/delete" class="btn btn-danger btn-sm" title="Supprimer">
+                    <a href="students/'.$data->id.'/delete" class="btn btn-danger btn-sm" title="Supprimer" onclick="return confirm(\'Voulez-vous vraiment supprimer\')">
                           <i class="fa fa-trash" style="color: #fff;"></i>
                     </a>
                     ';
@@ -70,7 +71,8 @@ class StudentController extends Controller
         # on aura besoin d'attribuer un campus à chaque etudiant
         $campus = Campus::all();
         $classes= Classe::all();
-        return view('students.create', compact('campus','classes'));
+        $courses= Course::all();
+        return view('students.create', compact('campus','classes','courses'));
     }
 
     /**
@@ -112,6 +114,7 @@ class StudentController extends Controller
             'student_postal'=>  $request->student_postal,
             'campus_id' => $request->campus_id,
             'class_id' => $request->class_id,
+            'course_id' => $request->course_id,
             );
 
         // generate a random new password for the user
@@ -217,6 +220,7 @@ class StudentController extends Controller
             'student_postal'=>  $request->student_postal,
             'campus_id' => $request->campus_id,
             'class_id' => $request->class_id,
+            'course_id' => $request->course_id,
             );
         //update Student
         Student::whereId($id)->update($form);
@@ -258,6 +262,7 @@ class StudentController extends Controller
             'student_email'=>  ['required', 'string', 'email', 'max:255'],
             'campus_id' => 'required',
             'class_id' => 'required',
+            'course_id' => 'required',
         ]);
     }
 

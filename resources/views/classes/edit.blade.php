@@ -17,17 +17,25 @@
                     <form method="post" action="{{ route('classes.update', $classe->id) }}">
                         @csrf
                         @method('PATCH')
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
+                   
+                            <div class="form-group col-md-10">
                                 <label for="name">Nom de la classe</label>
                                 <input type="text" class="form-control" name="class_name" value="{{ $classe->class_name }}" required>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-10">
                                 <label for="code">Code de la classe</label>
                                 <input type="text" class="form-control" name="class_code" value="{{ $classe->class_code }}" required>
                             </div>
-                        </div>
+                            <div class="form-group col-md-10">
+                                <label for="inputState">Campus</label>
+                                <select id="inputState" class="form-control @error('campus_id') is-invalid @enderror" name="campus_id">
+                                    <option value="" hidden="hidden" selected>Choisir...</option>
+                                    @foreach ($campus as $cmps) 
+                                        <option value="{{ $cmps->id }}">{{ $cmps->campus_name}}</option>
+                                    @endforeach
+                                </select>
+                              </div>
 
                         <div class="box-footer text-right">
                             <button type="submit" class="btn btn-success mt-4"><i class="fa-solid fa-file-arrow-down"></i> Enregistrer</button>&nbsp;&nbsp;

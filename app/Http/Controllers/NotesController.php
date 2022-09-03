@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campus;
+use App\Models\Classe;
+use App\Models\Course;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
@@ -23,9 +27,29 @@ class NotesController extends Controller
      */
     public function index()
     {
-       return view('notes.index');
+        $campuses=Campus::all();
+        $classes=Classe::all();
+        $courses=Course::all();
+
+       return view('notes.index',compact('campuses', 'classes', 'courses'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function find(Request $request)
+    {
+        $campuses=Campus::all();
+        $classes=Classe::all();
+        $courses=Course::all();
+        $students=Student::where('campus_id', '=', $request->campus_id)
+                        ->where('course_id', '=', $request->course_id)
+                        ->where('class_id', '=', $request->class_id)
+                        ->get();
+       return view('notes.index',compact('campuses', 'classes', 'courses','students'));
+    }
     /**
      * Show the form for creating a new resource.
      *

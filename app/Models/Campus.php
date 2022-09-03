@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Staff;
+use App\Models\Classe;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,5 +34,8 @@ class Campus extends Model
     {
         return $this->hasMany(Student::class);
     }
-   
+    public function classes()
+    {
+        return $this->hasMany(Classe::class);
+    }
 }

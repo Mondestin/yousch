@@ -76,6 +76,9 @@ Route::patch('/users/update/{id}', [App\Http\Controllers\StudentController::clas
 
 //NOTES ROUTES
 Route::resource('notes', NotesController::class);
+Route::post('find/students/', [App\Http\Controllers\NotesController::class, 'find'])->name('findStudents');
+
+
 
 //SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

@@ -7,10 +7,8 @@
           </div>
         </div>
       </div>
- 
 @endsection
 @section('content')
-
     <div class="p-3 bg-body rounded shadow-sm">
         <div class="container-fluid">
             <div class="card card-outline card-purple">
@@ -27,6 +25,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Code de la classe</th>
                                     <th scope="col">Nom de la classe</th>
+                                    <th scope="col">Campus</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -36,6 +35,7 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $classe->class_code }}</td>
                                     <td>{{ $classe->class_name }}</td>
+                                    <td>{{ $classe->campus->campus_name }}</td>
                                     <td>
                                         <form action="{{ route('classes.destroy', $classe->id) }}" method="POST">
                                             @csrf

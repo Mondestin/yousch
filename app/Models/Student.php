@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Campus;
 use App\Models\Classe;
+use App\Models\Course;
 use App\Models\Assiduite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,7 @@ class Student extends Model
         'student_country',
         'campus_id',
         'class_id',
+        'course_id',
     ];
 
     /**
@@ -38,13 +40,20 @@ class Student extends Model
         return $this->belongsTo(Campus::class);
     }
     /**
-     * Get the campus that owns the student.
+     * Get the class that owns the student.
      */
     public function class()
     {
         return $this->belongsTo(Classe::class);
     }
 
+   /**
+     * Get the class that owns the student.
+     */
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 
     public function assiduite()
     {

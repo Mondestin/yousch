@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Campus;
 use App\Models\Classe;
+use Illuminate\Http\Request;
+
 class ClassesController extends Controller
 {
     /**
@@ -35,7 +37,8 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        return view('classes.create');
+        $campus = Campus::all();
+        return view('classes.create',compact('campus'));
     }
 
     /**
@@ -50,6 +53,7 @@ class ClassesController extends Controller
         $request->validate([
             'class_name' => 'required',
             'class_code' => 'required',
+            'campus_id' => 'required',
         ]);
 
         Classe::create($request->all());
@@ -78,7 +82,8 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $classe=Classe::findOrFail($id);
-        return view('classes.edit', compact('classe'));
+        $campus = Campus::all();
+        return view('classes.edit', compact('classe','campus'));
     }
 
     /**
@@ -93,6 +98,7 @@ class ClassesController extends Controller
         $request->validate([
             'class_name' => 'required',
             'class_code' => 'required',
+            'campus_id' => 'required',
         ]);
         $classe=Classe::findOrFail($id);
         $classe->update($request->all());

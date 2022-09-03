@@ -30,6 +30,12 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('classes.index') }}" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
+         <i class="nav-icon fa-solid fa-user-tie"></i>
+        <p>Classes</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('units.index') }}" class="nav-link {{ Request::is('units*') ? 'active' : '' }}">
         <i class="nav-icon fa-solid fa-sitemap"></i>
         <p>UE</p>
@@ -47,12 +53,7 @@
         <p>Notes</p>
     </a>
 </li>
-<li class="nav-item">
-    <a href="{{ route('classes.index') }}" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
-         <i class="nav-icon fa-solid fa-user-tie"></i>
-        <p>Classes</p>
-    </a>
-</li>
+
 <li class="nav-item">
     <a href="{{ route('assiduites.index') }}" class="nav-link {{ Request::is('assiduites*') ? 'active' : '' }}">
         <i class="nav-icon fa-solid fa-calendar-check"></i>

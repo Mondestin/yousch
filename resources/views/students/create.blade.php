@@ -391,7 +391,19 @@
               </select>
             </div>
 
-          </div>  
+          </div>
+          <div class="row">
+              <div class="form-group col-md-3">
+                <label for="inputState">Parcours</label>
+                <select id="inputState" class="form-control @error('course_id') is-invalid @enderror" name="course_id">
+                    <option value="" hidden="hidden" selected>Choisir...</option>
+                    @foreach ($courses as $course) 
+                        <option value="{{ $course->id }}">{{ $course->course_code}}</option>
+                    @endforeach
+                </select>
+              </div>
+  
+            </div>   
         </div>  
                
        </div><!-- end Left side elements -->
