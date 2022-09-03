@@ -10,7 +10,7 @@ class Assiduite extends Model
 {
     use HasFactory;
 
-    protected $table = 'Assiduites';
+    protected $table = 'assiduites';
 
     // protected $cast = ['justificatif' => 'array'];
 

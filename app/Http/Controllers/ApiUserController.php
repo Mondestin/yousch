@@ -27,9 +27,7 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         if (auth()->guard('web')->attempt(['email' => $request->input('email'),'password' => $request->input('password')])) {
-            
             $user= User::where('email', 'like', '%'.$request->input('email').'%')->first();
-              
               return response()->json([
                 'success' => true,
                 'user_email' => $user->email
@@ -37,7 +35,7 @@ class ApiUserController extends Controller
          }
          return response()->json([
                 'success' => false,
-                'message' => 'Email ou mot de passe invalides',
+                'message' => 'Email ou mot de passe invalide',
           ], 401); 
     }
 
@@ -50,7 +48,6 @@ class ApiUserController extends Controller
     public function show($id)
     {
         $user= User::whereId($id)->first();
-          
         $user_a=array(
             'email'=>  $user->email,
             'type'=>  $user->type,

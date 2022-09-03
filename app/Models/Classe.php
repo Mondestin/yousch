@@ -10,7 +10,7 @@ class Classe extends Model
 {
     use HasFactory;
 
-    protected $table = 'Classes';
+    protected $table = 'classes';
 
     protected $fillable = [
         'class_name',
@@ -24,6 +24,6 @@ class Classe extends Model
     
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->hasMany(Student::class);
     }
 }

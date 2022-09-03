@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\AssiduitesController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UnitsController;
 
 /*
@@ -54,16 +55,12 @@ Route::resource('subjects', SubjectsController::class);
 // Assiduite ROUTES
 Route::resource('assiduites', AssiduitesController::class);
 
-//settings ROUTES
-Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
-
 //Tickets ROUTES
 Route::resource('plannings', PlanningsController::class);
 
 //Tickets ROUTES
 Route::resource('tickets', TicketsController::class);
 Route::post('reply/tickets/', [App\Http\Controllers\TicketsController::class, 'reply'])->name('reply');
-
 
 //Marks ROUTES
 Route::resource('marks', MarksController::class);
@@ -76,6 +73,9 @@ Route::get('delete/users/{id}', [App\Http\Controllers\UsersController::class, 'd
 Route::resource('students', StudentController::class);
 Route::get('students/{id}/delete', [App\Http\Controllers\StudentController::class, 'destroy'])->name('del_student');
 Route::patch('/users/update/{id}', [App\Http\Controllers\StudentController::class, 'updateUser'])->name('userUpdate');
+
+//NOTES ROUTES
+Route::resource('notes', NotesController::class);
 
 //SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Mail;
-use Image;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Campus;
@@ -14,8 +12,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -90,8 +90,6 @@ class StudentController extends Controller
             $avatar = $request->file('avatar');
 
             $filename = $code.rand(100000, 999999) . '.' . $avatar->getClientOriginalExtension();
-
-
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/students/' . $filename));
         } else {
             $filename="user.png";
@@ -141,7 +139,7 @@ class StudentController extends Controller
 
         $usermail=$request->student_email;
         // send maill of the new password to the user
-         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
+        //  \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
         // attached roles to the users
@@ -165,6 +163,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $user=Student::findOrFail($id);
+     
         return view('students.profile', compact('user'));
     }
 
@@ -257,7 +256,8 @@ class StudentController extends Controller
             'student_ville'=>  'required',
             'student_postal'=>  'required',
             'student_email'=>  ['required', 'string', 'email', 'max:255'],
-            'campus_id'=>  'nullable',
+            'campus_id' => 'required',
+            'class_id' => 'required',
         ]);
     }
 

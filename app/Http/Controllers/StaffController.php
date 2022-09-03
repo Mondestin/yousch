@@ -66,7 +66,7 @@ class StaffController extends Controller
         if ($request->file('avatar')) {
             $file = $request->file('avatar');
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('/uploads/students/'), $filename);
+            $file->move(public_path('/uploads/staffs/'), $filename);
             $data['avatar'] = $filename;
         } else {
             $filename = "user.png";
@@ -164,7 +164,7 @@ class StaffController extends Controller
         if ($request->file('avatar')) {
             $file = $request->file('avatar');
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('/uploads/students/'), $filename);
+            $file->move(public_path('/uploads/staffs/'), $filename);
             $data['avatar'] = $filename;
         } else {
             $filename = "user.png";

@@ -35,14 +35,14 @@ class Student extends Model
      */
     public function campus()
     {
-        return $this->hasOne(Campus::class);
+        return $this->belongsTo(Campus::class);
     }
     /**
      * Get the campus that owns the student.
      */
     public function class()
     {
-        return $this->hasOne(Classe::class);
+        return $this->belongsTo(Classe::class);
     }
 
 

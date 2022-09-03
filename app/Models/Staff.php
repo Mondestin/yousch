@@ -27,5 +27,8 @@ class Staff extends Model
         'staff_sexe',
         'staff_country'
     ];
-
+    public function campus()
+    {
+        return $this->belongsTo(Campus::class);
+    }
 }

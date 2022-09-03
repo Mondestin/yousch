@@ -22,12 +22,8 @@
                        src="{{asset('uploads/students')}}/{{$user->avatar}}"
                        alt="Student profile picture">
                 </div>
-
                 <h3 class="profile-username text-center">{{$user->student_name}} {{$user->student_surname}}</h3>
-
                 <p class="text-muted text-center">{{$user->student_code}}</p>
-
-         
               </div>
               <!-- /.card-body -->
             </div>
@@ -46,7 +42,70 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
                         <div>
-                           <h3>123456</h3>
+                          <table class="table table-bordered table-striped" style="margin-top: 20px;">
+                            <tbody>
+                               <tr>
+                                <td width="0%">
+                                  <strong>Nom(s)</strong>
+                                </td>
+                                <td>{{$user->student_surname}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Prénom(s)</strong>
+                                </td>
+                                <td>{{$user->student_name}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Sexe</strong>
+                                </td>
+                                <td>{{$user->student_sexe}}</td>
+                              </tr>
+                              <tr>
+                                <td width="30%">
+                                  <strong>Date de naissance</strong>
+                                </td>
+                                <td>{{date("d/m/Y", strtotime($user->student_dob))}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Lieu de naissance</strong>
+                                </td>
+                                <td>{{$user->student_pob}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Email</strong>
+                                </td>
+                                <td>{{$user->student_email}}</td>
+                              </tr>
+                               <tr>
+                                <td width="30%">
+                                  <strong>Téléphone</strong>
+                                </td>
+                                <td>{{$user->student_phone}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Adresse</strong>
+                                </td>
+                                <td>{{$user->student_adress}}</td>
+                              </tr>
+                                <tr>
+                                <td width="30%">
+                                  <strong>Campus</strong>
+                                </td>
+                                <td>{{$user->campus->campus_name}}</td>
+                              </tr> 
+                              <tr>
+                                <td width="30%">
+                                  <strong>Classe</strong>
+                                </td>
+                                <td>{{$user->class->class_name}}</td>
+                              </tr> 
+                               </tbody>
+                          </table>
                         </div>
                   </div>
                   <!-- /.tab-pane -->

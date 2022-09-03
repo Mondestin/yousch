@@ -11,7 +11,7 @@ class Campus extends Model
 {
     use HasFactory;
 
-    protected $table = 'Campus';
+    protected $table = 'campus';
 
     protected $fillable = [
         'campus_name',
@@ -26,12 +26,12 @@ class Campus extends Model
      */
     public function staff()
     {
-        return $this->belongsTo(Staff::class);
+        return $this->hasMany(Staff::class);
     }
 
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->hasMany(Student::class);
     }
    
 }

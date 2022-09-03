@@ -374,8 +374,8 @@
 
             <div class="form-group col-md-3">
               <label for="inputState">Campus</label>
-              <select id="inputState" class="form-control" name="campus_id">
-                  <option selected>Choisir...</option>
+              <select id="inputState" class="form-control @error('campus_id') is-invalid @enderror" name="campus_id">
+                  <option value="" hidden="hidden" selected>Choisir...</option>
                   @foreach ($campus as $cmps) 
                       <option value="{{ $cmps->id }}">{{ $cmps->campus_name}}</option>
                   @endforeach
@@ -383,8 +383,8 @@
             </div>
             <div class="form-group col-md-3">
               <label for="inputState">Classe</label>
-              <select id="inputState" class="form-control" name="class_id">
-                  <option selected>Choisir...</option>
+              <select id="inputState" class="form-control @error('class_id') is-invalid @enderror" name="class_id">
+                  <option value="" hidden="hidden" selected>Choisir...</option>
                   @foreach ($classes as $class) 
                       <option value="{{ $class->id }}">{{ $class->class_name}}</option>
                   @endforeach

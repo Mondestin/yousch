@@ -14,7 +14,7 @@
 
     <p class="card-text mt-2"> <strong>Email:  {{$mail_data['email']}}</strong> </p>
     <p class="card-text mt-2"> <strong>Mot de passe: {{$mail_data['password']}}</strong></p>
-    <a href="#" class="btn btn-primary">Cliquer ici pour vous connecter</a>
+    <a href="https://yousch-app.site/login" class="btn btn-primary" target="_blank">Cliquer ici pour vous connecter</a>
   </div><br><br>
   <div class="card-footer text-danger">
     Ces informations sont strictement confidentiel et personnel. <br>
