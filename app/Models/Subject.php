@@ -19,6 +19,7 @@ class Subject extends Model
         'semester',
         'class_id',
         'unit_id',
+        'credits'
     ];
 
     // une matière ne peut appartenir qu'à une seule unité d'enseignement ( relation oneToMany inversé)

@@ -57,6 +57,7 @@ class SubjectsController extends Controller
             'semester' => 'required',
             'class_id' => 'required',
             'unit_id' => 'required',
+            'credits'=> 'required',
         ]);
 
         Subject::create($request->all());
@@ -104,6 +105,7 @@ class SubjectsController extends Controller
             'semester' => 'required',
             'class_id' => 'required',
             'unit_id' => 'required',
+            'credits'=> 'required',
         ]);
 
         $subject->update($request->all());

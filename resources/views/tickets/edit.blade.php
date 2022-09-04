@@ -4,7 +4,7 @@
     <div class="row">
      
     <div class="col-md-9">
-      <div class="card card-primary card-outline">
+      <div class="card card-purple card-outline">
         <div class="card-header">
           <h3 class=""><b>{{ $ticket->conversation_subject }}</b></h3>
         </div>
@@ -56,7 +56,7 @@
     </div>
     <!-- /.col -->
     <div class="col-md-3">
-        <div class="card card-primary card-outline">
+        <div class="card card-purple card-outline">
           <div class="card-header">
             <h3 class="card-title">Détails du ticket</h3>
           </div>

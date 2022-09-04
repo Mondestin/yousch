@@ -15,7 +15,7 @@
         <!-- Content Row -->
         <div class="container-fluid d-flex">
             <!-- Area Chart -->
-            <div class="card card-purple card-outline col-6">
+            <div class="card card-purple card-outline col-12">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-purple">Détails</h6>
                 </div>
@@ -31,6 +31,10 @@
                             <div class="form-group col-md-6">
                                 <label for="name">Nom de la matière</label>
                                 <input type="text" class="form-control" name="subject_name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="credits">Crédits de la matière</label>
+                                <input type="text" class="form-control" name="credits" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="semester">Unité d'enseignement</label>

@@ -81,7 +81,6 @@
         <div class="row" style="margin: 1%;">
           <div class="form-group col-md-10">
            <a href="{{route('notes.index')}}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Retour</a>
-           <a href="{{route('notes.edit', $student->id)}}" class="btn btn-warning "><i class="fa-solid fa-pen"></i> Modifier les notes de l'étudiant</a>
           </div>
           <div class="form-group col-md-2">
           </div>
@@ -95,7 +94,7 @@
   @endif
 <div class="row p-3">
   <div class="card">
-    <a href="#" class="btn btn-success">
+    <a href="{{route('printNotes', $student->id)}}" class="btn btn-success btnprn">
      <i class="fa-solid fa-download"></i>
      Générer un Bulletin
     </a>
@@ -105,6 +104,7 @@
     <div class="card-header">
       <h3 class="card-title"><strong>{{$unit->unit_code}}</strong> </h3>
       <div class="card-tools">
+        Nombre de matière(s) dans cette unité
         <span title="3 Matières" class="badge badge-primary">{{$unit->num}}</span>
         <button type="button" class="btn btn-tool" data-card-widget="collapse">
           <i class="fas fa-plus"></i>
@@ -112,8 +112,8 @@
       </div>
     </div>
     <!-- /.card-header -->
-    <div class="card-body p-0">
-      <table class="table table-striped">
+    <div  class="card-body p-0">
+      <table id="example" class="table table-striped">
         <thead>
           <tr>
             <th>Nom de l'évaluation</th>
@@ -122,6 +122,9 @@
             <th>Intervenant</th>
             <th>Note</th>
             <th>Grade</th>
+            @if (Auth::user()->type=="Staff")
+              <th>Action</th>
+            @endif
           </tr>
         </thead>
         <tbody>
@@ -138,6 +141,20 @@
                   <td>
                     {{$note->note >=10 ? 'PASS' : 'FAIL'}}
                   </td>
+                  @if (Auth::user()->type=="Staff")
+                  <td>
+                    <form action="{{ route('notes.destroy', $note->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                    <a href="#" class="btn btn-warning btn-sm update" title="modifier la note" data-note="{{$note->note}}" data-noteid="{{$note->id}}" data-toggle="modal" data-target="#edit-note">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <button type="submit" class="btn btn-danger btn-sm" title="Supprimer le note" onclick="return confirm('Voulez-vous vraiment supprimer')">
+                      <i class="fa fa-trash" style="color: #fff;"></i></button>
+                    </form>
+                    </td>
+                  @endif
+
                 </tr>
               @endif
               @endforeach  
@@ -150,6 +167,42 @@
 
 </div>
 </div>
+<!-- =========================MODAL EDIT============================== -->
+<div class="modal fade" id="edit-note">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header purple">
+        <h4 class="modal-title text-white">Modifier la Note</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color: #fff;">&times;</span>
+        </button>
+      </div>
+      <form class="editform" method="post"> 
+      <div class="modal-body">
+          @csrf
+          @method('PATCH')
+            <div class="col-md-12">
+                <div class="form-group">
+                  <input type="numbers" id="noteIdnew" name="note_id"  style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="Name">Note</label> :
+                    <input type="numbers" name="newMark" id="newMark" value="">
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Annuler</button>
+        <button type="submit" id="updateNote" class="btn btn-success"><i class="fa-solid fa-check"></i> Valider</button>
+      </div>
+    </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- ================================================================= -->
  </section>
 @endsection
 @section('scripts')
@@ -160,13 +213,33 @@
 <script src="../../plugins/toastr/toastr.min.js"></script>
 <!-- Select2 -->
 <script src="../plugins/select2/js/select2.full.min.js"></script>
+<!-- printPage -->
+<script src="../../dist/js/jquery.printPage.js"></script>
 <script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- page script -->
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.btnprn').printPage();
+  });
+  </script>
 <script>
   $(function () {
     $("#example1").DataTable();
-    $("#example3").DataTable();
     $("#toast-container").fadeOut(12000);
+  });
+</script>
+<script>
+  $(function () {
+    //update note logic
+    $(".update").on("click", function(){
+        var note = $(this).data('note');
+        var noteId = $(this).data('noteid');
+        $("#newMark").val(note);
+        $("#noteIdnew").val(noteId);
+
+      $(".editform").attr("action","{{route('notes.update', 8)}}");
+      $("#edit-note").modal("show");
+    });
   });
 </script>
 <script>

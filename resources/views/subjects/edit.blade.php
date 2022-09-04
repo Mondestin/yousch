@@ -9,7 +9,7 @@
       </div>
 @endsection
 @section('content')
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <div class="my-3 p-3 bg-body rounded">
         <!-- Content Row -->
         <div class="container-fluid">
 
@@ -24,10 +24,17 @@
                         @method('PUT')
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="code">Code de la matière</label>
+                            <input type="text" class="form-control" name="subject_code" value="{{ $subject->subject_code }}">
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="name">Nom de la matière</label>
                                 <input type="text" class="form-control" name="subject_name" value="{{ $subject->subject_name }}">
                             </div>
-
+                            <div class="form-group col-md-6">
+                                <label for="credits">Crédits de la matière</label>
+                                <input type="text" class="form-control" name="credits" value="{{ $subject->credits }}">
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="inputState">Semestre</label>
                                 <select class="form-control" name="semester">
@@ -37,10 +44,7 @@
                                 </select>
                             </div>
                      
-                            <div class="form-group col-md-6">
-                                <label for="code">Code de la matière</label>
-                            <input type="text" class="form-control" name="subject_code" value="{{ $subject->subject_code }}">
-                            </div>
+                            
 
                             <div class="form-group col-md-6">
                                 <label for="semester">Unité d'enseignement</label>
@@ -66,7 +70,7 @@
                             <a href="{{ route('subjects.index') }}" class="btn btn-primary mt-4"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                         </div>
                     </form>
-                    <hr>
+           
                 </div>    
             </div>    
 

@@ -54,6 +54,7 @@ Route::resource('subjects', SubjectsController::class);
 
 // Assiduite ROUTES
 Route::resource('assiduites', AssiduitesController::class);
+Route::post('assiduites/find/students/', [App\Http\Controllers\AssiduitesController::class, 'find'])->name('findStudentsA');
 
 //Tickets ROUTES
 Route::resource('plannings', PlanningsController::class);
@@ -76,9 +77,8 @@ Route::patch('/users/update/{id}', [App\Http\Controllers\StudentController::clas
 
 //NOTES ROUTES
 Route::resource('notes', NotesController::class);
-Route::post('find/students/', [App\Http\Controllers\NotesController::class, 'find'])->name('findStudents');
-
-
+Route::post('notes/find/students/', [App\Http\Controllers\NotesController::class, 'find'])->name('findStudents');
+Route::get('notes/bulletin/{id}', [App\Http\Controllers\NotesController::class, 'print'])->name('printNotes');
 
 //SETTINGS ROUTES
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');

@@ -57,7 +57,7 @@
 <li class="nav-item">
     <a href="{{ route('assiduites.index') }}" class="nav-link {{ Request::is('assiduites*') ? 'active' : '' }}">
         <i class="nav-icon fa-solid fa-calendar-check"></i>
-        <p>Assiduités</p>
+        <p>Assiduité</p>
     </a>
 </li>
 

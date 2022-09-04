@@ -47,7 +47,7 @@ class UsersController extends Controller
                     <a href="users/'.$data->id.'/edit" class="btn btn-warning btn-sm text-white" title="Modifier">
                           <i class="fa fa-pen" ></i>
                     </a>
-                    <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer">
+                    <a href="delete/users/'.$data->id.'" class="btn btn-danger btn-sm" title="Supprimer" onclick="return confirm(\'Voulez-vous vraiment supprimer\')">
                           <i class="fa fa-trash" style="color: #fff;"></i>
                     </a>
                     ';

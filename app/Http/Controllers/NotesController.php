@@ -154,7 +154,7 @@ class NotesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit";
     }
 
     /**
@@ -166,7 +166,9 @@ class NotesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // update the mark
+        Note::whereId($request->note_id)->update(["note"=>$request->newMark]);
+        return back()->with('success', 'La note a été modifiée avec succès');
     }
 
     /**
@@ -177,6 +179,13 @@ class NotesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         // update the mark
+         Note::whereId($id)->delete();
+         return back()->with('success', 'La note a été supprimée avec succès');
+    }
+
+    public function print($id)
+    {
+        return view('notes.print');
     }
 }

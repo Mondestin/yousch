@@ -28,6 +28,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Code de la matière</th>
                                     <th scope="col">Nom de la matière</th>
+                                    <th scope="col">Crédits</th>
                                     <th scope="col">Semestre</th>
                                     <th scope="col">UE</th>
                                     <th scope="col">Code de la classe</th>
@@ -40,6 +41,7 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $subject->subject_code }}</td>
                                     <td>{{ $subject->subject_name }}</td>
+                                    <td>{{ $subject->credits }}</td>
                                     <td>{{ $subject->semester }}</td>
                                     <td>{{ $subject->unit->unit_code }}</td>
                                     <td>{{ $subject->class->class_code }}</td>
