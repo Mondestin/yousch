@@ -31,9 +31,9 @@
                             <div class="form-group col-md-6">
                                 <label for="inputState">Semestre</label>
                                 <select class="form-control" name="semester">
-                                    <option value="{{ $subject->semester }}" hidden>{{ $subject->semester ? 'Semestre 1' : 'Semestre 2' }}</option>
-                                        <option value="1">Semestre 1</option>
-                                        <option value="0">Semestre 2</option>
+                                    <option value="{{ $subject->semester }}" hidden>{{ $subject->semester }}</option>
+                                        <option value="Semestre 1">Semestre 1</option>
+                                        <option value="Semestre 2">Semestre 2</option>
                                 </select>
                             </div>
                      

@@ -11,7 +11,7 @@
  <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-md-6">
-      <h1 class="text-black">{{ Auth::user()->type=="Staff"? "Gestions des notes et Bulletin" : "Notes et Bulletin"}}</h1>
+      <h1 class="text-black">Gestions des notes</h1>
       </div>
     </div>
   </div>
@@ -81,7 +81,6 @@
         <div class="row" style="margin: 1%;">
           <div class="form-group col-md-10">
            <a href="{{route('notes.index')}}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Retour</a>
-           <a href="{{route('notes.edit', $student->id)}}" class="btn btn-warning "><i class="fa-solid fa-pen"></i> Modifier les notes de l'étudiant</a>
           </div>
           <div class="form-group col-md-2">
           </div>

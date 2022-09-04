@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('subject_name');
             $table->string('subject_code');
-            $table->boolean('semester');
+            $table->string('semester');
             $table->foreignId('class_id')->references('id')->on('classes');
             $table->foreignId('unit_id')->references('id')->on('units');
             $table->timestamps();

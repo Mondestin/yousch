@@ -7,7 +7,6 @@
           </div>
         </div>
       </div>
- 
 @endsection
 @section('content')
 <section class="content">
@@ -66,7 +65,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3>
-                        Listes des étudiants en:                
+                        Listes des étudiants               
                     </h3>
                     {{-- <a class="btn btn-success float-right mr-4" href="{{ route('notes.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a> --}}
                 </div>
@@ -97,15 +96,12 @@
                                     <td>{{ $student->course->course_code}}</td>
                                     <td>{{ $student->class->class_name}}</td>
                                     <td>
-                                        <form action="{{ route('staffs.destroy', $student->id) }}" method="POST">
-                                            <a href="{{ route('staffs.edit', $student->id) }}" class="btn btn-warning btn-sm">
-                                              <i class="fa fa-pen" ></i></a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer')">
-                                              <i class="fa fa-trash" style="color: #fff;"></i></button>
-                                        
-                                        </form>
+                                        <a href="{{ route('notes.show', $student->id) }}" class="btn btn-success btn-sm" title="Entrer les notes ou voir les notes">
+                                          <i class="fa-solid fa-plus"></i>
+                                        </a>
+                                        <a href="{{ route('notes.edit', $student->id) }}" class="btn btn-warning btn-sm" title="Modifier les notes">
+                                          <i class="fa fa-pen" style="color: #fff;"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

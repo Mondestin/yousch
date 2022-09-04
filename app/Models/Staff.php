@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Note;
 use App\Models\Campus;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Staff extends Model
 {
@@ -29,6 +30,10 @@ class Staff extends Model
     ];
     public function campus()
     {
-        return $this->belongsTo(Campus::class);
+        return $this->hasOne(Campus::class);
+    }
+    public function note()
+    {
+        return $this->hasMany(Note::class);
     }
 }

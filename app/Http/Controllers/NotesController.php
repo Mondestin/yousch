@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
+use App\Models\Staff;
 use App\Models\Campus;
 use App\Models\Classe;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
 {
@@ -27,11 +32,30 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $campuses=Campus::all();
-        $classes=Classe::all();
-        $courses=Course::all();
+        // if the user is a staff 
+        if (Auth::user()->type=="Staff") {
+            $campuses=Campus::all();
+            $classes=Classe::all();
+            $courses=Course::all();
+            
+           return view('notes.index',compact('campuses', 'classes', 'courses'));
+        }
+        // if the user is a student
+        else {
+            $email=Auth::user()->email;
 
-       return view('notes.index',compact('campuses', 'classes', 'courses'));
+            $student=Student::where('student_email', 'like', '%'.$email.'%')->first();
+            $staffs=Staff::all();
+            // get all the subjects of the classe
+            $subjects = Subject::where('class_id', '=', $student->class->id)->get();
+            // get all subjects and units
+            $units = DB::select("SELECT subjects.subject_name, units.unit_code, count(subjects.id) as num FROM `subjects` inner join units ON subjects.unit_id=units.id GROUP by units.unit_code");
+            // get all the notes
+            $notes=Note::all();
+    
+            return view('notes.create',compact('student','subjects','units','staffs','notes'));
+        }
+
     }
 
     /**
@@ -40,14 +64,18 @@ class NotesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function find(Request $request)
-    {
+    {  
+        // init
         $campuses=Campus::all();
         $classes=Classe::all();
         $courses=Course::all();
+
         $students=Student::where('campus_id', '=', $request->campus_id)
                         ->where('course_id', '=', $request->course_id)
                         ->where('class_id', '=', $request->class_id)
                         ->get();
+
+
        return view('notes.index',compact('campuses', 'classes', 'courses','students'));
     }
     /**
@@ -55,9 +83,9 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+     
     }
 
     /**
@@ -67,8 +95,35 @@ class NotesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $request->validate([
+            'subject_id' => 'required',
+            'staff_id' => 'required',
+        ]);
+        $form = array(
+            'student_id' => $request->student_id,
+            'subject_id' => $request->subject_id,
+            'staff_id' => $request->staff_id,
+            'note' => $request->note,
+        );
+         $check = Note::where('student_id','like','%'.$request->student_id.'%')
+                        ->where('subject_id', 'like', '%'.$request->subject_id.'%')
+                        ->get();
+      
+        // if the mark already exist show error message
+        if (sizeof($check) > 0) {
+            return back()->with('error', 'La note avait déjà été entrée, veuillez la modifier');
+        }
+        // save the mark in the db
+        $res=Note::create($form);
+        if ($res) {
+            # send mail to the student
+        }
+        $student=Student::whereId($request->student_id)->first();
+        // get all the subjects of the classe
+        $subjects = Subject::where('class_id', '=', $student->class->id)->get();
+
+        return back()->with('success', 'La note a été sauvegardée avec succès');
     }
 
     /**
@@ -79,7 +134,16 @@ class NotesController extends Controller
      */
     public function show($id)
     {
-        //
+        $student=Student::whereId($id)->first();
+        $staffs=Staff::all();
+        // get all the subjects of the classe
+        $subjects = Subject::where('class_id', '=', $student->class->id)->get();
+        // get all subjects and units
+        $units = DB::select("SELECT subjects.subject_name, units.unit_code, count(subjects.id) as num FROM `subjects` inner join units ON subjects.unit_id=units.id GROUP by units.unit_code");
+        // get all the notes
+        $notes=Note::all();
+
+        return view('notes.create',compact('student','subjects','units','staffs','notes'));
     }
 
     /**

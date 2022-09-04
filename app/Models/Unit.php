@@ -36,6 +36,6 @@ class Unit extends Model
 
     public function subject()
     {
-        return $this->hasOne(Subject::class);
+        return $this->hasMany(Subject::class);
     }
 }

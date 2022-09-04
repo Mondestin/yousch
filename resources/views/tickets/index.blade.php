@@ -10,12 +10,11 @@
           </div>
         </div>
       </div>
- 
 @endsection
 @section('content')
-    <div class="my-3 p-3 bg-body rounded">
-        <div class="container-fluid mt-3 d-flex justify-content-center align-center">
-            <div class="card card-outline card-purple col-md-10">
+    <div class=" p-3 bg-body rounded">
+        <div class="container-fluid d-flex justify-content-center align-center">
+            <div class="card card-outline card-purple col-md-12">
                 <div class="card-header">
                     <h3 class="card-title">Liste des tickets</h3>
                     <a class="btn btn-success float-right mr-4" href="{{ route('tickets.create') }}"><i class="fa fa-plus"></i> Nouveau ticket</a>

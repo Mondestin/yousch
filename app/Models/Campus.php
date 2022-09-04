@@ -27,7 +27,7 @@ class Campus extends Model
      */
     public function staff()
     {
-        return $this->hasMany(Staff::class);
+        return $this->belongsTo(Staff::class);
     }
 
     public function student()

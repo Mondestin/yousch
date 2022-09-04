@@ -40,7 +40,7 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ $subject->subject_code }}</td>
                                     <td>{{ $subject->subject_name }}</td>
-                                    <td>{{ $subject->semester ? 'Semestre 1' : 'Semestre 2' }}</td>
+                                    <td>{{ $subject->semester }}</td>
                                     <td>{{ $subject->unit->unit_code }}</td>
                                     <td>{{ $subject->class->class_code }}</td>
                                     <td>

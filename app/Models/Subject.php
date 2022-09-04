@@ -11,7 +11,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $table = 'Subjects';
+    protected $table = 'subjects';
 
     protected $fillable = [
         'subject_name',
@@ -36,6 +36,10 @@ class Subject extends Model
      */
     public function class()
     {
-        return $this->belongsToMany(Classe::class);
+        return $this->belongsTo(Classe::class);
+    }
+    public function note()
+    {
+        return $this->hasOne(Note::class);
     }
 }
