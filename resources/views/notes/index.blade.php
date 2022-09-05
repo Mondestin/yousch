@@ -99,9 +99,7 @@
                                         <a href="{{ route('notes.show', $student->id) }}" class="btn btn-success btn-sm" title="Entrer les notes ou voir les notes">
                                           <i class="fa-solid fa-plus"></i>
                                         </a>
-                                        <a href="{{ route('notes.edit', $student->id) }}" class="btn btn-warning btn-sm" title="Modifier les notes">
-                                          <i class="fa fa-pen" style="color: #fff;"></i>
-                                        </a>
+                                     
                                     </td>
                                 </tr>
                                 @endforeach

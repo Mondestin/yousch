@@ -123,9 +123,10 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                               <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
+                                                <option>Présent(e)</option>
+                                                <option>Abscent(e)</option>
+                                                <option>Abscence justifié</option>
+                                                <option>Abscence non justifié</option>
                                               </select>
                                             </div>
                                           </div>
