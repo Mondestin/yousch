@@ -69,7 +69,7 @@ class AssiduitesController extends Controller
      */
     public function store(Request $request)
     {
-        return "store";
+        
     }
 
     /**

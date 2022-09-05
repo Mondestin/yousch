@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('classes', function (Blueprint $table) {
-         $table->foreignId('campus_id')->references('id')->on('campus')->onDelete('cascade');
+        Schema::table('assiduites', function (Blueprint $table) {
+            //
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('classes', function (Blueprint $table) {
+        Schema::table('assiduites', function (Blueprint $table) {
             //
         });
     }
