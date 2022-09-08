@@ -17,7 +17,6 @@ class Course extends Model
         'course_code',
     ];
 
-    // un parcours ne peut appartenir qu'à une seule unité d'enseignement
     public function unit()
     {
         return $this->hasMany(Unit::class);

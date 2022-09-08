@@ -22,9 +22,6 @@ class Campus extends Model
         'staff_id',
     ];
 
-    /**
-     * Get the staff that owns the campus.
-     */
     public function staff()
     {
         return $this->belongsTo(Staff::class);

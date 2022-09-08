@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
-
-class ApiStudentController extends Controller
+use Illuminate\Support\Facades\DB;
+use App\Models\Note;
+class ApiNotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class ApiStudentController extends Controller
      */
     public function index()
     {
-        $students=User::all();
-
-        return $students->toJson(JSON_PRETTY_PRINT);
+        //
     }
 
     /**
@@ -34,22 +32,24 @@ class ApiStudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        return Student::find($student)->toJson(JSON_PRETTY_PRINT);
+        $notes = DB::select("SELECT note, subjects.subject_name, notes.created_at FROM `notes` inner join subjects on notes.subject_id=subjects.id WHERE notes.student_id=$id
+        ");
+        return response()->json($notes);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -57,10 +57,10 @@ class ApiStudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
         //
     }

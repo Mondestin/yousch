@@ -32,24 +32,16 @@ class Student extends Model
         'course_id',
     ];
 
-    /**
-     * Get the campus that owns the student.
-     */
+
     public function campus()
     {
         return $this->belongsTo(Campus::class);
     }
-    /**
-     * Get the class that owns the student.
-     */
+
     public function class()
     {
         return $this->belongsTo(Classe::class);
     }
-
-   /**
-     * Get the class that owns the student.
-     */
     public function course()
     {
         return $this->belongsTo(Course::class);

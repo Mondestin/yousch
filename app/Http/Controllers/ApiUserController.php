@@ -15,7 +15,9 @@ class ApiUserController extends Controller
      */
     public function index()
     {
-        return User::all()->toJson(JSON_PRETTY_PRINT);
+  
+        $users=User::all();
+        return response()->json($users);
     }
 
     /**
@@ -47,15 +49,12 @@ class ApiUserController extends Controller
      */
     public function show($id)
     {
-        $user= User::whereId($id)->first();
+        $user= User::findOrfail($id);
         $user_a=array(
             'email'=>  $user->email,
             'type'=>  $user->type,
             );
-          return response()->json([
-            'success' => true,
-            'user_email' => $user->email
-        ]);
+          return response()->json($user);
     }
 
     /**

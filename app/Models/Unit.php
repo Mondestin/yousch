@@ -17,22 +17,10 @@ class Unit extends Model
         'course_id',
     ];
 
-    // une unité d'enseignement peut avoir une multitude de parcours
-
-    /**
-     * Get the courses for the units.
-     */
-
     public function course()
     {
         return $this->belongsTo(Course::class);
     }
-
-    // une unité d'ensignement peut avoir une multitude de matière
-
-    /**
-     * Get the subject for the units.
-     */
 
     public function subject()
     {

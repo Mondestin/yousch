@@ -21,7 +21,6 @@ class Assiduite extends Model
         'time',
     ];
 
-    // je veux récuperer l'etudiant qui est absent
     public function student()
     {
         return $this->belongsToMany(Student::class);

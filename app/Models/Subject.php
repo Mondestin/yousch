@@ -22,19 +22,10 @@ class Subject extends Model
         'credits'
     ];
 
-    // une matière ne peut appartenir qu'à une seule unité d'enseignement ( relation oneToMany inversé)
-
-    /**
-     * Get the unit that owns the subject.
-     */
     public function unit()
     {
         return $this->belongsTo(Unit::class);
     }
- 
-    /**
-     * Get the unit that owns the subject.
-     */
     public function class()
     {
         return $this->belongsTo(Classe::class);

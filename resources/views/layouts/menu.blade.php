@@ -73,9 +73,3 @@
         <p>Utilisateurs</p>
     </a>
 </li>
-<li class="nav-item">
-    <a href="{{ route('settings') }}" class="nav-link {{ Request::is('settings') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-cogs"></i>
-        <p>Reglages</p>
-    </a>
-</li>

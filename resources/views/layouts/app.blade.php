@@ -41,12 +41,12 @@
                              alt="User Image" style="border: 2px solid #6633CC!important;">
                         <p  class="text-dark">
                             {{ Auth::user()->email }}
-                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                            <small>{{ Auth::user()->type }} depuis {{ Auth::user()->created_at->format('d/m/Y') }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat border">Profile <i class="fa-solid fa-user-cog"></i></a>
+                        {{-- <a href="#" class="btn btn-default btn-flat border">Profile <i class="fa-solid fa-user-cog"></i></a> --}}
                         <a href="#" class="btn btn-default btn-flat float-right border"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>

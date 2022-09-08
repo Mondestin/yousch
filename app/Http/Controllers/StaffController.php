@@ -33,9 +33,6 @@ class StaffController extends Controller
      */
     public function index()
     {
-        # on récupère toutes la listes du staff
-        # on sait que la table staff est reliés au model staff, on va donc se servir de ce model pour intéragir avec la table en question
-        # on va également bénéficier des méthodes de qu'offre l'orm pour la récupération des données.
 
         $staffs = Staff::all();
         return view('staffs.index', compact("staffs"));
@@ -71,8 +68,6 @@ class StaffController extends Controller
         } else {
             $filename = "user.png";
         }
-
-        # on récupère les données soumis dans le formulaire, on les vérifie et on les stock en bdd
         $request->validate([
             'staff_code' => 'required',
             'staff_name' =>  'required',

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ApiUserController;
+use App\Http\Controllers\ApiNotesController;
 use App\Http\Controllers\ApiStudentController;
 
 /*
@@ -27,4 +28,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // students routes
 //  Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('students', ApiStudentController::class);
+    Route::apiResource('notes', ApiNotesController::class);
 //  });

@@ -21,10 +21,10 @@
         <div class="container-fluid mt-3">
         <div class="card card-outline card-purple">
               <div class="card-header">
-                <h3 class="card-title"><b> Liste des étudiants</b></h3>
+                <h3 class="card-title"><b> Liste des events</b></h3>
               </div>
               <div class="container-fluid m-3">
-              <a class="btn btn-success float-right mr-4" href="{{ route('students.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a>
+              <a class="btn btn-success float-right mr-4" href="{{ route('plannings.create') }}"><i class="fa fa-plus"></i> Nouvelle entrée</a>
    
               </div>      
               <div class="card-body">
@@ -32,14 +32,10 @@
                     <thead>
                     <tr>
                     <th>#</th>
-                    <th>Code</th>
-                    <th>Nom(s)</th>
-                    <th>Prénom(s)</th>
-                    <th>Email</th>
-                    <th>Date de Naissance</th>
-                    <th>Lieu de Naissance</th>
-                    <th>Téléphone</th>
-                    <th>Campus</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Couleur</th>
+                    <th>Description</th>
                     <th>Action</th>
                     </tr>
                     </thead>
