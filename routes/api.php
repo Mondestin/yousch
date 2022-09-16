@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ApiUserController;
 use App\Http\Controllers\ApiNotesController;
+use App\Http\Controllers\ApiTicketController;
 use App\Http\Controllers\ApiStudentController;
 
 /*
@@ -29,4 +30,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //  Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('students', ApiStudentController::class);
     Route::apiResource('notes', ApiNotesController::class);
+    Route::apiResource('tickets', ApiTicketController::class);
 //  });

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use App\Models\Student;
 class ApiUserController extends Controller
 {
     /**
@@ -29,11 +30,19 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         if (auth()->guard('web')->attempt(['email' => $request->input('email'),'password' => $request->input('password')])) {
+           
             $user= User::where('email', 'like', '%'.$request->input('email').'%')->first();
-              return response()->json([
-                'success' => true,
-                'user_email' => $user->email
-             ]);
+            $student=Student::where('student_email', 'like', '%'.$request->input('email').'%')->first();
+            
+         
+            return response()->json([  
+            'user_one' => "".$user->id,
+            'user_email' => $user->email,
+            'student_id' => "".$student->id,
+            'student_name' => $student->student_name." ".$student->student_surname,
+            'student_class' => $student->class->class_code,
+            'student_course' => $student->course->course_code,
+            'student_img' => $student->avatar]);
          }
          return response()->json([
                 'success' => false,
@@ -50,10 +59,7 @@ class ApiUserController extends Controller
     public function show($id)
     {
         $user= User::findOrfail($id);
-        $user_a=array(
-            'email'=>  $user->email,
-            'type'=>  $user->type,
-            );
+
           return response()->json($user);
     }
 

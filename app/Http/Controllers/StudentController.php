@@ -142,7 +142,7 @@ class StudentController extends Controller
 
         $usermail=$request->student_email;
         // send maill of the new password to the user
-        //  \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
+         \Mail::to($usermail)->send(new \App\Mail\Newuser($mail_data));
         //  create the new user
         $newuser=User::create($user);
         // attached roles to the users
